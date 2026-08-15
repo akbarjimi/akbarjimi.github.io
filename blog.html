@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="وبلاگ اکبر جیمی؛ نوشته‌های فنی و تجربه‌های مهندسی نرم‌افزار.">
+  <title>وبلاگ — اکبر جیمی</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="index.html"><span class="brand-mark">ا</span><span>اکبر جیمی</span></a>
+    <button class="menu-toggle" aria-expanded="false" aria-controls="site-nav">منو</button>
+    <nav class="nav" id="site-nav" aria-label="ناوبری اصلی"><ul class="nav-list">
+      <li class="nav-item"><a class="nav-link" href="index.html">خانه</a></li><li class="nav-item"><a class="nav-link" href="resume.html">رزومه</a></li><li class="nav-item"><a class="nav-link" href="about.html">درباره من</a></li><li class="nav-item"><a class="nav-link" href="courses.html">دوره‌ها</a></li><li class="nav-item"><a class="nav-link" href="projects.html">پروژه‌ها</a></li>
+      <li class="nav-item has-dropdown"><a class="nav-link" href="outside.html">خارج از کار</a><div class="dropdown"><a href="outside/movies.html">فیلم‌ها</a><a href="outside/games.html">بازی‌ها</a><a href="outside/books.html">کتاب‌ها</a><a href="outside/series.html">سریال‌ها</a><a href="outside/travel.html">سفرها</a></div></li>
+      <li class="nav-item"><a class="nav-link" href="papers.html">مقالات</a></li><li class="nav-item"><a class="nav-link" href="contact.html">تماس</a></li>
+      <li class="nav-item has-dropdown active"><a class="nav-link" href="blog.html">مطالب</a><div class="dropdown"><a href="blog.html">وبلاگ</a><a href="notes.html">یادداشت‌ها</a></div></li>
+    </ul></nav>
+  </div>
+</header>
+<main>
+  <section class="page-hero"><div class="container"><span class="eyebrow">وبلاگ</span><h1>فکرهایی که ارزش نوشتن دارند.</h1><p>نوشته‌های بلندتر درباره مهندسی نرم‌افزار، یادگیری، معماری، تجربه‌های کاری و مسیر ساختن چیزهای واقعی.</p></div></section>
+  <section class="section"><div class="container post-layout">
+    <div>
+      <div class="filter-bar" aria-label="فیلتر مطالب"><button class="filter-btn active" data-filter="all">همه</button><button class="filter-btn" data-filter="engineering">مهندسی نرم‌افزار</button><button class="filter-btn" data-filter="learning">یادگیری</button><button class="filter-btn" data-filter="career">مسیر حرفه‌ای</button></div>
+      <div class="post-list">
+        <article class="card post-card" data-category="engineering"><div class="card-media"><span class="media-label">مهندسی نرم‌افزار</span></div><div class="card-body"><div class="card-meta">۱۴۰۵/۰۵/۲۰ · ۸ دقیقه مطالعه</div><h2>چرا بعضی سیستم‌ها با ساده‌تر شدن، بهتر می‌شوند؟</h2><p class="card-excerpt">پیچیدگی همیشه نشانه بلوغ نیست. در این نوشته درباره هزینه abstraction، مرزهای سیستم و تصمیم‌های کوچک اما اثرگذار صحبت می‌کنم.</p><div class="tags"><span class="tag">Architecture</span><span class="tag">Backend</span></div></div></article>
+        <article class="card post-card" data-category="learning"><div class="card-media alt"><span class="media-label">یادگیری</span></div><div class="card-body"><div class="card-meta">۱۴۰۵/۰۴/۰۸ · ۶ دقیقه مطالعه</div><h2>از PHP به Go؛ چیزی که در مهاجرت زبان واقعاً مهم است</h2><p class="card-excerpt">وقتی سال‌ها با یک زبان کار کرده‌اید، مهاجرت فقط یادگیری syntax نیست؛ باید مدل ذهنی و عادت‌های مهندسی را هم بازبینی کنید.</p><div class="tags"><span class="tag">Go</span><span class="tag">PHP</span></div></div></article>
+        <article class="card post-card" data-category="career"><div class="card-media dark"><span class="media-label">مسیر حرفه‌ای</span></div><div class="card-body"><div class="card-meta">۱۴۰۵/۰۳/۲۵ · ۷ دقیقه مطالعه</div><h2>رزومه باید چه چیزی را ثابت کند؟</h2><p class="card-excerpt">رزومه فهرست سابقه کار نیست؛ یک سند فشرده برای نشان دادن دامنه مسئولیت، اثرگذاری و نوع مسئله‌هایی است که حل کرده‌اید.</p><div class="tags"><span class="tag">Career</span><span class="tag">Resume</span></div></div></article>
+      </div>
+    </div>
+    <aside class="sidebar"><div class="panel"><h3>موضوعات</h3><ul class="sidebar-list"><li><a href="#">مهندسی نرم‌افزار</a></li><li><a href="#">Backend</a></li><li><a href="#">Go</a></li><li><a href="#">Laravel</a></li><li><a href="#">یادگیری</a></li><li><a href="#">مسیر حرفه‌ای</a></li></ul></div></aside>
+  </div></section>
+</main>
+<footer class="site-footer"><div class="container footer-inner"><span>© ۱۴۰۵ اکبر جیمی</span><span>وبلاگ شخصی</span></div></footer>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
