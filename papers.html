@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="dark light">
+    <meta name="theme-color" content="#0b0d12">
+    <title>مقالات علمی — محمد اکبری</title>
+    <meta name="description" content="مقالات علمی‌ای که خوانده‌ام؛ از Attention Is All You Need تا FAISS و KG+LLM.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300..900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        (function () {
+            try {
+                var t = localStorage.getItem('theme');
+                if (!t) t = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+                document.documentElement.dataset.theme = t;
+            } catch (e) { document.documentElement.dataset.theme = 'dark'; }
+        })();
+    </script>
+    <script src="js/data.js" defer></script>
+    <script src="js/main.js" defer></script>
+</head>
+<body data-page="papers">
+
+<a class="skip-link" href="#main">پرش به محتوای اصلی</a>
+
+<header class="site-header">
+    <div class="container header-inner">
+        <a class="brand" href="index.html" aria-label="خانه">
+            <span class="brand-mark" aria-hidden="true">م</span>
+            <span class="brand-text">محمد اکبری</span>
+        </a>
+
+        <nav class="nav" id="siteNav" aria-label="ناوبری اصلی">
+            <a href="index.html">خانه</a>
+            <a href="projects.html">پروژه‌ها</a>
+            <a href="courses.html">دوره‌ها</a>
+            <a href="movies.html">فیلم</a>
+            <a href="series.html">سریال</a>
+            <a href="books.html">کتاب</a>
+            <a href="papers.html">مقالات</a>
+            <a href="games.html">بازی</a>
+            <a href="blog.html">بلاگ</a>
+            <a href="notes.html">یادداشت‌ها</a>
+        </nav>
+
+        <div class="header-actions">
+            <button class="icon-btn" id="themeToggle" type="button" aria-label="تغییر پوسته">
+                <svg class="ico ico-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+                <svg class="ico ico-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
+            </button>
+            <button class="icon-btn menu-btn" id="menuBtn" type="button" aria-label="منو" aria-expanded="false" aria-controls="siteNav">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+            </button>
+        </div>
+    </div>
+</header>
+
+<main id="main">
+
+    <section class="page-hero">
+        <div class="container">
+            <span class="eyebrow reveal">خوانده‌ها</span>
+            <h1 class="page-title reveal">مقالات علمی</h1>
+            <p class="lead reveal">
+                مقالاتی که خوانده‌ام یا در برنامهٔ خواندن دارم — بیشتر در حوزهٔ
+                یادگیری عمیق، بازیابی اطلاعات، و سیستم‌های هوشمند. برای هر مقاله،
+                <strong>دستاورد اصلی</strong> را جداگانه ثبت کرده‌ام.
+            </p>
+
+            <div class="media-stats reveal" id="papersStats" aria-live="polite"></div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+
+            <div class="media-toolbar reveal">
+                <label class="sort-select-wrap">
+          <span class="sort-label">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18M6 12h12M10 18h4"/></svg>
+            مرتب‌سازی
+          </span>
+                    <select class="sort-select" id="papersSort" aria-label="ترتیب نمایش">
+                        <option value="readAt-desc" selected>تاریخ خواندن — جدیدترین</option>
+                        <option value="readAt-asc">تاریخ خواندن — قدیمی‌ترین</option>
+                        <option value="year-desc">سال انتشار — جدیدترین</option>
+                        <option value="year-asc">سال انتشار — قدیمی‌ترین</option>
+                    </select>
+                    <svg class="sort-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                </label>
+
+                <div class="media-filters" id="papersFilters" role="group" aria-label="فیلتر بر اساس حوزه">
+                    <button type="button" class="filter-chip is-active" data-filter="all">همه</button>
+                </div>
+            </div>
+
+            <div class="papers-grid" id="papersGrid" aria-live="polite"></div>
+
+            <div class="empty-state" id="papersEmpty" hidden>
+                <p>مقاله‌ای با این فیلتر پیدا نشد.</p>
+            </div>
+
+        </div>
+    </section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="container footer-inner">
+        <p class="footer-copy">© <span id="year">۱۴۰۴</span> محمد اکبری — ساخته‌شده با HTML، CSS و JavaScript خالص.</p>
+        <nav class="socials" aria-label="شبکه‌های اجتماعی">
+            <a href="https://github.com/akbarjimi" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://packagist.org/packages/akbarjimi/purser" target="_blank" rel="noopener">Packagist</a>
+            <a href="mailto:mohammad.akbari@zoho.com">ایمیل</a>
+        </nav>
+    </div>
+</footer>
+
+</body>
+</html>

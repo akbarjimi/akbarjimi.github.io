@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="dark light">
+    <meta name="theme-color" content="#0b0d12">
+    <title>Purser — مستندات Laravel Excel Importer | محمد اکبری</title>
+    <meta name="description" content="مستندات فارسی Purser؛ یک pipeline توزیع‌شده و event-driven برای ایمپورت اکسل در Laravel. با driverهای قابل تعویض، اعتبارسنجی سطر به سطر، و بازیابی خطا در سطح سطر.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300..900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        (function () {
+            try {
+                var t = localStorage.getItem('theme');
+                if (!t) t = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+                document.documentElement.dataset.theme = t;
+            } catch (e) { document.documentElement.dataset.theme = 'dark'; }
+        })();
+    </script>
+    <script src="js/data.js" defer></script>
+    <script src="js/main.js" defer></script>
+</head>
+<body data-page="purser">
+
+<a class="skip-link" href="#main">پرش به محتوای اصلی</a>
+
+<header class="site-header">
+    <div class="container header-inner">
+        <a class="brand" href="index.html" aria-label="خانه">
+            <span class="brand-mark" aria-hidden="true">م</span>
+            <span class="brand-text">محمد اکبری</span>
+        </a>
+
+        <nav class="nav" id="siteNav" aria-label="ناوبری اصلی">
+            <a href="index.html">خانه</a>
+            <a href="projects.html">پروژه‌ها</a>
+            <a href="courses.html">دوره‌ها</a>
+            <a href="movies.html">فیلم</a>
+            <a href="series.html">سریال</a>
+            <a href="books.html">کتاب</a>
+            <a href="games.html">بازی</a>
+            <a href="blog.html">بلاگ</a>
+            <a href="notes.html">یادداشت‌ها</a>
+        </nav>
+
+        <div class="header-actions">
+            <button class="icon-btn" id="themeToggle" type="button" aria-label="تغییر پوسته">
+                <svg class="ico ico-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+                <svg class="ico ico-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
+            </button>
+            <button class="icon-btn menu-btn" id="menuBtn" type="button" aria-label="منو" aria-expanded="false" aria-controls="siteNav">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+            </button>
+        </div>
+    </div>
+</header>
+
+<main id="main">
+
+    <!-- ============ HERO ============ -->
+    <section class="page-hero docs-hero">
+        <div class="container">
+            <nav class="breadcrumb reveal" aria-label="مسیر">
+                <a href="projects.html">پروژه‌ها</a>
+                <span aria-hidden="true">/</span>
+                <span>Purser</span>
+            </nav>
+
+            <div class="docs-hero-head reveal">
+                <div class="docs-hero-title">
+                    <h1 class="page-title">
+                        Purser
+                        <span class="docs-version">v1.0</span>
+                    </h1>
+                    <p class="docs-tagline">
+                        یک pipeline توزیع‌شده و event-driven برای ایمپورت اکسل در Laravel.
+                        driverهای قابل تعویض، اعتبارسنجی سطر به سطر، بازیابی خطا در سطح سطر،
+                        و handlerی که خودتان می‌نویسید.
+                    </p>
+                </div>
+
+                <div class="docs-badges reveal" role="list">
+                    <span class="docs-badge">PHP 8.1+</span>
+                    <span class="docs-badge">Laravel 10 · 11 · 12</span>
+                    <span class="docs-badge">MIT</span>
+                    <span class="docs-badge">Event-Driven</span>
+                    <span class="docs-badge">Queue-Based</span>
+                </div>
+
+                <div class="docs-hero-actions reveal">
+                    <a class="btn btn-primary" href="https://github.com/akbarjimi/excel-importer-pipeline" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="width:18px;height:18px"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.69-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.29 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.21-1.49 3.18-1.18 3.18-1.18.63 1.59.23 2.76.11 3.05.74.8 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.06.78 2.14 0 1.55-.01 2.79-.01 3.17 0 .31.21.68.8.56C20.21 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>
+                        GitHub
+                    </a>
+                    <a class="btn btn-ghost" href="https://packagist.org/packages/akbarjimi/purser" target="_blank" rel="noopener">
+                        Packagist
+                    </a>
+                    <button class="btn btn-ghost install-copy" type="button" data-copy="composer require akbarjimi/purser">
+                        <code>composer require akbarjimi/purser</code>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:16px;height:16px"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ LAYOUT: TOC + CONTENT ============ -->
+    <div class="docs-layout">
+
+        <!-- Sidebar TOC -->
+        <aside class="docs-toc" id="docsToc">
+            <button class="toc-toggle" type="button" aria-expanded="false" aria-controls="docsTocList">
+                <span>فهرست مطالب</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" style="width:16px;height:16px"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <nav id="docsTocList" aria-label="فهرست مطالب">
+                <ul class="toc-list">
+                    <li><a href="#why">چرا این پکیج؟</a></li>
+                    <li><a href="#requirements">پیش‌نیازها</a></li>
+                    <li><a href="#installation">نصب</a></li>
+                    <li><a href="#quickstart">شروع سریع</a></li>
+                    <li><a href="#pipeline">معماری pipeline</a></li>
+                    <li><a href="#events">رویدادها و state machine</a></li>
+                    <li><a href="#drivers">Reader drivers</a></li>
+                    <li><a href="#validation">اعتبارسنجی و transformation</a></li>
+                    <li><a href="#error-recovery">بازیابی خطا</a></li>
+                    <li><a href="#configuration">پیکربندی</a></li>
+                    <li><a href="#commands">دستورات کنسول</a></li>
+                    <li><a href="#testing">تست و مشارکت</a></li>
+                    <li><a href="#license">لایسنس</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main content -->
+        <article class="docs-content">
+
+            <!-- ============ WHY ============ -->
+            <section id="why" class="docs-section">
+                <h2>چرا این پکیج؟</h2>
+                <p>
+                    بیشتر پکیج‌های اکسل، ایمپورت را یک عملیات واحد می‌بینند: فایل را بخوان،
+                    سطرها را تحویل بده، تمام. این کار تا زمانی جواب می‌دهد که یک سطر وسط یک
+                    فایل ۵۰٬۰۰۰ سطری رد نشود، یا یک chunk job نمیرد و ندانید کدام سطرها commit
+                    شده‌اند، یا یک بازبین، audit trail هر سطر ردشده را از شما نخواهد.
+                </p>
+                <p>
+                    <strong>Purser</strong> ایمپورت را یک <em>pipeline چندمرحله‌ای</em> می‌بیند.
+                    هر مرحله یک job صف‌محور مستقل و قابل retry است. هر خطای اعتبارسنجی در برابر
+                    سطری که باعث آن شده ثبت می‌شود. pipeline با یا بدون سطرهای معتبر به پایان
+                    می‌رسد.
+                </p>
+            </section>
+
+            <!-- ============ REQUIREMENTS ============ -->
+            <section id="requirements" class="docs-section">
+                <h2>پیش‌نیازها</h2>
+                <ul class="docs-list">
+                    <li>PHP نسخهٔ <strong>8.1</strong> یا بالاتر</li>
+                    <li>Laravel نسخه‌های <strong>10، 11 یا 12</strong></li>
+                    <li>یکی از دو بستهٔ خواننده:
+                        <ul>
+                            <li><code>maatwebsite/excel</code> — driver پیش‌فرض، مبتنی بر PhpSpreadsheet</li>
+                            <li><code>openspout/openspout</code> — streaming driver، مصرف حافظهٔ ثابت</li>
+                        </ul>
+                    </li>
+                    <li>یک queue connection دیتابیسی برای production</li>
+                </ul>
+            </section>
+
+            <!-- ============ INSTALLATION ============ -->
+            <section id="installation" class="docs-section">
+                <h2>نصب</h2>
+                <div class="code-block">
+<pre><code>composer require akbarjimi/purser
+php artisan vendor:publish --tag=purser
+php artisan vendor:publish --tag=purser-sheets
+php artisan migrate</code></pre>
+                </div>
+                <p>
+                    دستور publish اول، فایل <code>config/purser.php</code> را نصب می‌کند.
+                    دستور دوم، <code>config/purser-sheets.php</code> را نصب می‌کند؛ جایی که
+                    ستون‌های spreadsheet را به فیلدهای دامنهٔ خود map می‌کنید و قواعد
+                    اعتبارسنجی هر sheet را تعریف می‌کنید.
+                </p>
+                <div class="callout callout-info">
+                    <p>پنج جدول ساخته می‌شود: <code>excel_files</code>، <code>excel_sheets</code>،
+                        <code>excel_rows</code>، <code>excel_row_chunks</code> و <code>excel_row_errors</code>.</p>
+                </div>
+            </section>
+
+            <!-- ============ QUICKSTART ============ -->
+            <section id="quickstart" class="docs-section">
+                <h2>شروع سریع</h2>
+
+                <h3>۱. یک handler بنویسید</h3>
+                <p>
+                    handler یک stream از سطرهای معتبر دریافت می‌کند و هر کاری که اپلیکیشن شما
+                    نیاز دارد انجام می‌دهد.
+                </p>
+                <div class="code-block">
+<pre><code>&lt;?php
+
+declare(strict_types=1);
+
+namespace App\Imports;
+
+use Akbarjimi\Purser\Contracts\ImportHandler;
+use Akbarjimi\Purser\DTOs\ValidatedRow;
+use App\Models\User;
+
+final class UserImportHandler implements ImportHandler
+{
+    public function handle(int $fileId, iterable $rows): void
+    {
+        foreach ($rows as $row) {
+            assert($row instanceof ValidatedRow);
+
+            User::updateOrCreate(
+                ['email' =&gt; $row-&gt;data['email']],
+                [
+                    'name' =&gt; $row-&gt;data['name'],
+                    'age'  =&gt; $row-&gt;data['age'],
+                ],
+            );
+        }
+    }
+}</code></pre>
+                </div>
+
+                <h3>۲. sheet را در <code>config/purser-sheets.php</code> پیکربندی کنید</h3>
+                <div class="code-block">
+<pre><code>return [
+    'Users' =&gt; [
+        'mapping' =&gt; [
+            'name'  =&gt; 'A',
+            'email' =&gt; 'B',
+            'age'   =&gt; 'C',
+        ],
+        'validation' =&gt; [
+            'name'  =&gt; 'required|string|max:255',
+            'email' =&gt; 'required|email',
+            'age'   =&gt; 'required|integer|min:18',
+        ],
+    ],
+];</code></pre>
+                </div>
+
+                <h3>۳. ایمپورت را dispatch کنید</h3>
+                <div class="code-block">
+<pre><code>use Akbarjimi\Purser\Services\ImportManager;
+use App\Imports\UserImportHandler;
+
+app(ImportManager::class)
+    -&gt;import('uploads/users.xlsx', disk: 's3')
+    -&gt;withHandler(UserImportHandler::class)
+    -&gt;dispatch();</code></pre>
+                </div>
+
+                <p>
+                    pipeline به‌صورت asynchronous اجرا می‌شود. دستور <code>excel:status {fileId}</code>
+                    پیشرفت را نشان می‌دهد، <code>excel:retry {fileId}</code> chunkهای failed را دوباره
+                    dispatch می‌کند، و سطرهای ردشده از طریق <code>ErrorReportService</code> در دسترس‌اند.
+                </p>
+
+                <div class="callout callout-warn">
+                    <p>
+                        <strong>نکته:</strong> handler فقط پس از پردازش همهٔ chunkها فراخوانی
+                        می‌شود. سطرهایی که اعتبارسنجی را رد نکرده‌اند، در <code>excel_row_errors</code>
+                        ذخیره می‌شوند و هرگز به handler نمی‌رسند.
+                    </p>
+                </div>
+            </section>
+
+            <!-- ============ PIPELINE ============ -->
+            <section id="pipeline" class="docs-section">
+                <h2>معماری pipeline</h2>
+                <p>
+                    هر ایمپورت از شش مرحله عبور می‌کند. هر مرحله یک job صف‌محور یا event
+                    listener است. هر مرحله خروجی‌اش را پیش از signal دادن به مرحلهٔ بعد persist
+                    می‌کند. هیچ چیز بین مراحل در حافظه نگه داشته نمی‌شود.
+                </p>
+
+                <div class="pipeline-diagram">
+                    <div class="pipeline-step"><span class="pipeline-num">۱</span><div><strong>Registration</strong><p>ساخت رکورد <code>ExcelFile</code> و fire رویداد <code>ExcelFileRegistered</code>.</p></div></div>
+                    <div class="pipeline-step"><span class="pipeline-num">۲</span><div><strong>Sheet Discovery</strong><p>کشف sheetها با <code>SheetDiscoveryService</code> و persist آن‌ها در <code>excel_sheets</code>.</p></div></div>
+                    <div class="pipeline-step"><span class="pipeline-num">۳</span><div><strong>Row Extraction</strong><p>استخراج سطرها با batch‌ای از <code>ExtractSheetRowsJob</code>، یکی برای هر sheet.</p></div></div>
+                    <div class="pipeline-step"><span class="pipeline-num">۴</span><div><strong>Chunking</strong><p>ساخت <code>ExcelRowChunk</code> با اندازهٔ <code>chunk_size</code> برای هر sheet.</p></div></div>
+                    <div class="pipeline-step"><span class="pipeline-num">۵</span><div><strong>Processing</strong><p>اجرای <code>ProcessChunkJob</code>ها با <code>allowFailures(true)</code>؛ هر chunk مستقل پردازش می‌شود.</p></div></div>
+                    <div class="pipeline-step"><span class="pipeline-num">۶</span><div><strong>Handler Invocation</strong><p>handler شما با یک <code>LazyCollection</code> از <code>ValidatedRow</code>ها فراخوانی می‌شود.</p></div></div>
+                </div>
+
+                <p class="docs-aside">
+                    هر مرحله می‌تواند شکست بخورد و بدون اجرای دوبارهٔ مراحل قبلی retry شود.
+                    هر انتقال وضعیت توسط یک enum state machine اعتبارسنجی می‌شود. هیچ حالت
+                    مشترک قابل‌تغییری بین مراحل وجود ندارد.
+                </p>
+            </section>
+
+            <!-- ============ EVENTS & STATE ============ -->
+            <section id="events" class="docs-section">
+                <h2>رویدادها و state machine</h2>
+
+                <h3>رویدادهای عمومی</h3>
+                <table class="docs-table">
+                    <thead>
+                    <tr><th>رویداد</th><th>معنا</th></tr>
+                    </thead>
+                    <tbody>
+                    <tr><td><code>ExcelFileRegistered</code></td><td>رکورد فایل ساخته شد، pipeline شروع شد.</td></tr>
+                    <tr><td><code>FileSheetsScanCompleted</code></td><td>sheetها کشف و persist شدند.</td></tr>
+                    <tr><td><code>AllRowsExtracted</code></td><td>همهٔ سطرهای هر sheet در <code>excel_rows</code> هستند.</td></tr>
+                    <tr><td><code>FileProcessingCompleted</code></td><td>همهٔ chunkها پردازش شدند و handler فراخوانی شد.</td></tr>
+                    </tbody>
+                </table>
+                <p>هر چهار رویداد پس از commit دیتابیس dispatch می‌شوند.</p>
+
+                <h3>State machine فایل</h3>
+                <div class="code-block">
+<pre><code>PENDING      -&gt; READING | FAILED
+READING      -&gt; ROWS_EXTRACTING | ROWS_EXTRACTED | FAILED
+ROWS_EXTRACTED -&gt; PROCESSING | FAILED
+PROCESSING   -&gt; COMPLETED | FAILED
+FAILED       -&gt; PROCESSING    (retry)
+COMPLETED    -&gt; (terminal)</code></pre>
+                </div>
+                <p>
+                    هر موجودیت (file، sheet، row، chunk) enum مخصوص خود را با
+                    <code>canTransitionTo()</code> دارد. انتقال‌های غیرمجاز از طریق
+                    <code>HasStatusTransitions</code> یک <code>RuntimeException</code> پرتاب
+                    می‌کنند. انتقال‌های idempotent (از یک state به خودش) no-op هستند.
+                </p>
+
+                <h3>Idempotency در هر مرحله</h3>
+                <ul class="docs-list">
+                    <li><code>HandleExcelFileRegistered</code> اگر sheetها موجود باشند، discovery را skip می‌کند.</li>
+                    <li><code>SheetRowBuffer</code> با کلید <code>(excel_sheet_id, content_hash, hash_algo)</code> upsert می‌کند.</li>
+                    <li><code>ProcessChunkJob</code> اگر chunk قبلاً <code>COMPLETED</code> باشد بلافاصله return می‌کند.</li>
+                    <li><code>ChunkerService</code> در یک transaction با سه retry و کلید یکتای <code>(excel_sheet_id, from_row_id, to_row_id)</code> اجرا می‌شود.</li>
+                </ul>
+            </section>
+
+            <!-- ============ DRIVERS ============ -->
+            <section id="drivers" class="docs-section">
+                <h2>Reader drivers</h2>
+                <p>
+                    موتور خواندن پشت قرارداد <code>ExcelReaderDriver</code> قرار دارد. دو پیاده‌سازی
+                    همراه پکیج ارائه می‌شود که معامله‌های مهندسی متفاوتی دارند.
+                </p>
+
+                <div class="driver-grid">
+                    <div class="driver-card">
+                        <header>
+                            <h3>PhpSpreadsheetDriver</h3>
+                            <span class="driver-tag">پیش‌فرض</span>
+                        </header>
+                        <p>از <code>maatwebsite/excel</code> استفاده می‌کند. کل فایل را در حافظه
+                            بارگذاری می‌کند. برای فایل‌های تا چند ده هزار سطر مناسب است.</p>
+                        <dl class="driver-facts">
+                            <dt>حافظه</dt><dd>~۱KB per cell</dd>
+                            <dt>فرمت‌ها</dt><dd>xls، xlsx، ods، csv</dd>
+                            <dt>totalRows</dt><dd>دقیق</dd>
+                        </dl>
+                    </div>
+
+                    <div class="driver-card">
+                        <header>
+                            <h3>OpenSpoutDriver</h3>
+                            <span class="driver-tag driver-tag-alt">Streaming</span>
+                        </header>
+                        <p>از <code>openspout/openspout</code> استفاده می‌کند. خوانندهٔ streaming
+                            با حافظهٔ ثابت بدون توجه به اندازهٔ فایل.</p>
+                        <dl class="driver-facts">
+                            <dt>حافظه</dt><dd>ثابت</dd>
+                            <dt>فرمت‌ها</dt><dd>xlsx، csv</dd>
+                            <dt>totalRows</dt><dd>۰ (مستند شده)</dd>
+                        </dl>
+                    </div>
+                </div>
+
+                <h3>انتخاب driver</h3>
+                <div class="code-block">
+<pre><code># از طریق .env
+EXCEL_IMPORTER_DRIVER=openspout
+
+# یا در config/purser.php
+'driver' =&gt; 'openspout',</code></pre>
+                </div>
+
+                <div class="callout callout-info">
+                    <p>
+                        اگر بستهٔ متناظر نصب نباشد، driver در نخستین استفاده
+                        <code>MissingDriverDependencyException</code> پرتاب می‌کند و دستور
+                        composer لازم را نام می‌برد.
+                    </p>
+                </div>
+
+                <h3>واگرایی <code>totalRows</code></h3>
+                <p>
+                    <code>PhpSpreadsheetDriver</code> اعداد دقیق سطر و ستون برمی‌گرداند؛
+                    <code>OpenSpoutDriver</code> همیشه <code>0</code> برمی‌گرداند چون
+                    بدون مصرف کل sheet نمی‌تواند پیش‌شمارش کند. اگر قبل از extraction
+                    شمارش دقیق نیاز دارید، از driver نخست استفاده کنید.
+                </p>
+            </section>
+
+            <!-- ============ VALIDATION & TRANSFORMATION ============ -->
+            <section id="validation" class="docs-section">
+                <h2>اعتبارسنجی و transformation</h2>
+                <p>
+                    دو مرحلهٔ اختیاری بین reader و handler اجرا می‌شوند. ترتیب ثابت است:
+                </p>
+                <div class="code-block">
+<pre><code>raw row (column letters)
+  -&gt; mapping
+  -&gt; transformer
+  -&gt; validation
+  -&gt; ValidatedRow</code></pre>
+                </div>
+
+                <h3>Mapping</h3>
+                <p>
+                    mapping یک آرایهٔ config است، نه یک کلاس. کلیدها نام فیلدهایی هستند که
+                    handler شما خواهند دید، و مقادیر حروف ستون‌ها هستند.
+                </p>
+
+                <h3>Validation</h3>
+                <p>
+                    قواعد استاندارد Laravel که مستقیم به <code>Validator::make()</code>
+                    پاس داده می‌شوند. اعتبارسنجی روی خروجی transformer اجرا می‌شود، نه روی
+                    سطر خام.
+                </p>
+                <div class="callout callout-warn">
+                    <p>
+                        اگر sheet هیچ قاعده‌ای نداشته باشد و <code>strict_validation</code> روی
+                        <code>false</code> باشد، همهٔ سطرها قبول می‌شوند. در production مقدار را
+                        <code>true</code> بگذارید تا misconfiguration را زودتر بگیرید.
+                    </p>
+                </div>
+
+                <h3>Transformer</h3>
+                <p>
+                    یک کلاس که <code>TransformerInterface</code> را پیاده‌سازی می‌کند. از
+                    طریق container resolve می‌شود، پس constructor injection کار می‌کند.
+                </p>
+                <div class="code-block">
+<pre><code>&lt;?php
+
+namespace App\Transformers;
+
+use Akbarjimi\Purser\Contracts\TransformerInterface;
+use Akbarjimi\Purser\Models\ExcelSheet;
+
+final class UserTransformer implements TransformerInterface
+{
+    public function transform(array $mappedRow, ExcelSheet $sheet): array
+    {
+        return [
+            'name'  =&gt; trim((string) $mappedRow['name']),
+            'email' =&gt; strtolower(trim((string) $mappedRow['email'])),
+            'age'   =&gt; (int) $mappedRow['age'],
+        ];
+    }
+}</code></pre>
+                </div>
+                <p>
+                    اگر transformer exception پرتاب کند، سطر با وضعیت
+                    <code>FAILED</code> و <code>error_type: system</code> ثبت می‌شود و
+                    chunk به کار خود ادامه می‌دهد.
+                </p>
+            </section>
+
+            <!-- ============ ERROR RECOVERY ============ -->
+            <section id="error-recovery" class="docs-section">
+                <h2>بازیابی خطا</h2>
+                <p>
+                    pipeline طوری طراحی شده که یک سطر خراب نتواند ایمپورت را متوقف کند. این
+                    ارزش اصلی پکیج است.
+                </p>
+
+                <h3>دو کلاس خطا</h3>
+                <table class="docs-table">
+                    <thead>
+                    <tr><th>نوع</th><th>دامنه</th><th>رفتار</th></tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><strong>Validation failure</strong></td>
+                        <td>per row، مورد انتظار</td>
+                        <td>سطر <code>FAILED_VALIDATION</code> می‌شود؛ یک <code>ExcelRowError</code>
+                            برای هر نقض قاعده نوشته می‌شود؛ chunk ادامه می‌یابد.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>System failure</strong></td>
+                        <td>per chunk، غیرمنتظره</td>
+                        <td>chunk با پیام exception در ستون <code>error</code> علامت‌گذاری
+                            می‌شود؛ job دوباره throw می‌کند تا Laravel retry کند.</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <h3>خواندن خطاها</h3>
+                <div class="code-block">
+<pre><code>use Akbarjimi\Purser\Services\ErrorReportService;
+
+$service = app(ErrorReportService::class);
+
+$page = $service-&gt;paginate($fileId, perPage: 50);
+$json = $service-&gt;toJson($fileId);
+$path = $service-&gt;toSpreadsheet($fileId, disk: 'local');</code></pre>
+                </div>
+
+                <h3>workflow بازیابی</h3>
+                <p>
+                    دستور <code>excel:retry</code> فقط روی فایل‌هایی با وضعیت <code>FAILED</code>
+                    کار می‌کند. سه پیش‌شرط دارد:
+                </p>
+                <ol class="docs-list docs-list-num">
+                    <li>فایل موجود و soft-delete نشده باشد.</li>
+                    <li>وضعیت فایل <code>FAILED</code> باشد.</li>
+                    <li>حداقل یک chunk وضعیت <code>FAILED</code> داشته باشد.</li>
+                </ol>
+                <p>
+                    در این صورت، فایل به <code>PROCESSING</code> می‌رود، chunkهای failed به
+                    <code>PENDING</code> بازنشانی می‌شوند، و یک <code>Bus::batch</code> جدید
+                    dispatch می‌شود. chunkهای completed دست‌نخورده باقی می‌مانند.
+                </p>
+
+                <div class="callout callout-danger">
+                    <p>
+                        <strong>مهم:</strong> اگر شکست ناشی از داده‌ای باشد که تغییر نخواهد
+                        کرد، retry دوباره شکست می‌خورد. ستون <code>error</code> روی
+                        <code>excel_row_chunks</code> علت را نام می‌برد.
+                    </p>
+                </div>
+            </section>
+
+            <!-- ============ CONFIGURATION ============ -->
+            <section id="configuration" class="docs-section">
+                <h2>پیکربندی</h2>
+                <p>
+                    دو فایل به <code>config/</code> منتشر می‌شوند:
+                    <code>purser.php</code> برای تنظیمات سراسری pipeline و
+                    <code>purser-sheets.php</code> برای mapping و validation هر sheet.
+                </p>
+
+                <h3>کلیدهای اصلی در <code>purser.php</code></h3>
+                <table class="docs-table docs-table-config">
+                    <thead>
+                    <tr><th>کلید</th><th>پیش‌فرض</th><th>کاربرد</th></tr>
+                    </thead>
+                    <tbody>
+                    <tr><td><code>driver</code></td><td><code>maatwebsite</code></td><td><code>maatwebsite</code> یا <code>openspout</code></td></tr>
+                    <tr><td><code>chunk_size</code></td><td><code>1000</code></td><td>تعداد سطر در هر chunk</td></tr>
+                    <tr><td><code>insert_batch_size</code></td><td><code>100</code></td><td>تعداد سطر در هر batch دیتابیسی</td></tr>
+                    <tr><td><code>hash_algo</code></td><td><code>sha256</code></td><td>الگوریتم hash برای dedup سطرها</td></tr>
+                    <tr><td><code>max_sheets</code></td><td><code>50</code></td><td>رد فایل‌هایی که از این تعداد sheet بیشتر دارند</td></tr>
+                    <tr><td><code>strict_validation</code></td><td><code>false</code></td><td>throw در صورت نبود قاعده برای یک sheet</td></tr>
+                    <tr><td><code>default_disk</code></td><td><code>local</code></td><td>disk پیش‌فرض برای فایل‌های آپلودشده</td></tr>
+                    <tr><td><code>queue</code></td><td><code>default</code></td><td>نام queue connection برای jobها</td></tr>
+                    </tbody>
+                </table>
+
+                <h3>متغیرهای محیطی</h3>
+                <div class="code-block">
+<pre><code>EXCEL_IMPORTER_DRIVER=openspout
+EXCEL_IMPORTER_CHUNK_SIZE=500
+EXCEL_IMPORTER_INSERT_BATCH_SIZE=200
+EXCEL_IMPORTER_DISK=s3
+EXCEL_IMPORTER_QUEUE=imports
+EXCEL_IMPORTER_HASH_ALGO=sha256
+EXCEL_IMPORTER_STRICT_VALIDATION=true
+EXCEL_IMPORTER_LOG_ENABLED=true</code></pre>
+                </div>
+            </section>
+
+            <!-- ============ COMMANDS ============ -->
+            <section id="commands" class="docs-section">
+                <h2>دستورات کنسول</h2>
+                <p>سه دستور Artisan همراه پکیج ارائه می‌شود.</p>
+
+                <h3><code>excel:status {fileId}</code></h3>
+                <p>
+                    وضعیت کامل یک ایمپورت را چاپ می‌کند: متادیتای فایل، وضعیت هر sheet،
+                    شمارش chunkها بر اساس وضعیت، شمارش سطرها بر اساس وضعیت، و تعداد کل خطاها.
+                </p>
+                <div class="code-block code-block-output">
+<pre><code>File #42
++----------------+---------------------+
+| Field          | Value               |
++----------------+---------------------+
+| Name           | users.xlsx          |
+| Status         | completed           |
+| Rows Extracted | 2026-09-21 10:14:05 |
+| Completed      | 2026-09-21 10:14:19 |
++----------------+---------------------+
+
+Errors: 152</code></pre>
+                </div>
+
+                <h3><code>excel:retry {fileId}</code></h3>
+                <p>chunkهای failed را دوباره dispatch می‌کند. پیش‌شرط‌ها در بخش <a href="#error-recovery">بازیابی خطا</a> توضیح داده شده‌اند.</p>
+
+                <h3><code>excel:benchmark</code></h3>
+                <p>
+                    یک fixture مصنوعی <code>.xlsx</code> می‌سازد، آن را از کل pipeline عبور
+                    می‌دهد، و زمان هر فاز و مصرف حافظه را چاپ می‌کند. برای مقایسهٔ driverها
+                    یا تنظیم <code>chunk_size</code> استفاده می‌شود.
+                </p>
+                <div class="code-block">
+                    <pre><code>php artisan excel:benchmark --rows=50000 --driver=openspout</code></pre>
+                </div>
+            </section>
+
+            <!-- ============ TESTING ============ -->
+            <section id="testing" class="docs-section">
+                <h2>تست و مشارکت</h2>
+
+                <h3>اجرای تست‌ها</h3>
+                <div class="code-block">
+<pre><code>composer test
+# یا مستقیم:
+vendor/bin/pest
+
+# با coverage:
+vendor/bin/pest --coverage --min=80 --ci</code></pre>
+                </div>
+
+                <h3>Code style</h3>
+                <p>Laravel Pint با preset <code>laravel</code>. پیش از هر commit اجرا کنید:</p>
+                <div class="code-block">
+                    <pre><code>vendor/bin/pint</code></pre>
+                </div>
+
+                <h3>قالب commit</h3>
+                <div class="code-block">
+<pre><code>&lt;type&gt;(&lt;scope&gt;): &lt;imperative, lowercase, ≤ 72 chars&gt;
+
+# نمونه‌ها:
+fix(processor): persist row errors outside chunk transaction
+feat(drivers): add csv reader driver
+docs: clarify error report structure</code></pre>
+                </div>
+
+                <h3>امنیت</h3>
+                <p>
+                    آسیب‌پذیری‌ها را به‌جای issue عمومی، به
+                    <code>security@akbarjimi.com</code> گزارش دهید. جزئیات کامل در
+                    <a href="https://github.com/akbarjimi/excel-importer-pipeline/blob/main/SECURITY.md" target="_blank" rel="noopener">SECURITY.md</a>
+                    آمده است.
+                </p>
+            </section>
+
+            <!-- ============ LICENSE ============ -->
+            <section id="license" class="docs-section">
+                <h2>لایسنس</h2>
+                <p>
+                    این پروژه تحت لایسنس <strong>MIT</strong> منتشر شده است. Copyright © 2026
+                    Mohammad Akbari.
+                </p>
+                <div class="docs-license">
+                    <p>برای مطالعهٔ متن کامل لایسنس به فایل <code>LICENSE.md</code> در مخزن مراجعه کنید.</p>
+                    <a class="btn btn-ghost" href="https://github.com/akbarjimi/excel-importer-pipeline/blob/main/LICENSE.md" target="_blank" rel="noopener">
+                        مشاهدهٔ LICENSE.md
+                    </a>
+                </div>
+            </section>
+
+        </article>
+    </div>
+
+</main>
+
+<footer class="site-footer">
+    <div class="container footer-inner">
+        <p class="footer-copy">© <span id="year">۱۴۰۴</span> محمد اکبری — ساخته‌شده با HTML، CSS و JavaScript خالص.</p>
+        <nav class="socials" aria-label="شبکه‌های اجتماعی">
+            <a href="https://github.com/akbarjimi" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://packagist.org/packages/akbarjimi/purser" target="_blank" rel="noopener">Packagist</a>
+            <a href="mailto:mohammad.akbari@zoho.com">ایمیل</a>
+        </nav>
+    </div>
+</footer>
+
+</body>
+</html>

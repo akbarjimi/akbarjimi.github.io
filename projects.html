@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" content="#0b0d12">
+  <title>پروژه‌ها — محمد اکبری</title>
+  <meta name="description" content="پروژه‌های متن‌باز محمد اکبری: Purser، راه‌حل‌های LeetCode در Go و کدهای دورهٔ FAISS.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300..900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('theme');
+        if (!t) t = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        document.documentElement.dataset.theme = t;
+      } catch (e) { document.documentElement.dataset.theme = 'dark'; }
+    })();
+  </script>
+  <script src="js/data.js" defer></script>
+  <script src="js/main.js" defer></script>
+</head>
+<body data-page="projects">
+
+<a class="skip-link" href="#main">پرش به محتوای اصلی</a>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="index.html" aria-label="خانه">
+      <span class="brand-mark" aria-hidden="true">م</span>
+      <span class="brand-text">محمد اکبری</span>
+    </a>
+
+    <nav class="nav" id="siteNav" aria-label="ناوبری اصلی">
+      <a href="index.html">خانه</a>
+      <a href="projects.html">پروژه‌ها</a>
+      <a href="courses.html">دوره‌ها</a>
+      <a href="movies.html">فیلم</a>
+      <a href="series.html">سریال</a>
+      <a href="books.html">کتاب</a>
+      <a href="games.html">بازی</a>
+      <a href="blog.html">بلاگ</a>
+      <a href="notes.html">یادداشت‌ها</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="icon-btn" id="themeToggle" type="button" aria-label="تغییر پوسته">
+        <svg class="ico ico-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="ico ico-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
+      </button>
+      <button class="icon-btn menu-btn" id="menuBtn" type="button" aria-label="منو" aria-expanded="false" aria-controls="siteNav">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- سرصفحهٔ صفحه -->
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow reveal">کارها</span>
+      <h1 class="page-title reveal">پروژه‌ها</h1>
+      <p class="lead reveal">
+        مجموعه‌ای از پروژه‌های متن‌باز و مخازن کدی که در طول این سال‌ها ساخته‌ام.
+        همهٔ کدها روی گیت‌هاب در دسترس هستند و برای بیشترشان مستندات یا توضیح فارسی دارم.
+      </p>
+    </div>
+  </section>
+
+  <!-- پروژهٔ شاخص: Purser -->
+  <section class="section">
+    <div class="container">
+      <article class="featured-project reveal" id="purser">
+        <div class="featured-header">
+          <span class="project-icon project-icon-lg" aria-hidden="true">📥</span>
+          <div class="featured-titles">
+            <span class="featured-badge">پروژهٔ شاخص</span>
+            <h2 class="featured-title">Purser</h2>
+            <p class="featured-sub">Laravel Excel Importer — خط لولهٔ توزیع‌شدهٔ ایمپورت اکسل</p>
+          </div>
+        </div>
+
+        <p class="featured-lead">
+          یک پکیج Laravel که ایمپورت اکسل را نه به‌عنوان یک عملیات واحد، بلکه به‌صورت
+          یک خط لولهٔ چندمرحله‌ای می‌بیند: خواندن، اعتبارسنجی، پردازش و بازیابی خطا.
+          هر مرحله یک جاب صف‌محور مستقل و قابل تلاش مجدد است؛ و هر خطای اعتبارسنجی
+          در سطح سطر ثبت می‌شود، بدون اینکه کل ایمپورت را متوقف کند.
+        </p>
+
+        <div class="featured-features">
+          <div class="feature">
+            <h3>درایورهای خوانندهٔ قابل تعویض</h3>
+            <p>پیاده‌سازی مبتنی بر <code>maatwebsite/excel</code> یا خوانندهٔ استریمینگ <code>openspout/openspout</code>.</p>
+          </div>
+          <div class="feature">
+            <h3>بازیابی خطا در سطح سطر</h3>
+            <p>خطاهای اعتبارسنجی در جدول <code>excel_row_errors</code> ثبت می‌شوند و ایمپورت را متوقف نمی‌کنند.</p>
+          </div>
+          <div class="feature">
+            <h3>معماری رویدادمحور</h3>
+            <p>هر مرحله یک جاب یا لیسنر صف‌محور است؛ بدون حالت مشترک قابل‌تغییر بین مراحل.</p>
+          </div>
+          <div class="feature">
+            <h3>هندلری که خودتان می‌نویسید</h3>
+            <p>پکیج فقط سطرهای معتبر را به شما تحویل می‌دهد؛ منطق ذخیره‌سازی کاملاً در اختیار شماست.</p>
+          </div>
+        </div>
+
+        <div class="featured-meta">
+          <span class="tag">Laravel 10 · 11 · 12</span>
+          <span class="tag">PHP 8.1+</span>
+          <span class="tag">Queue</span>
+          <span class="tag">Event-Driven</span>
+          <span class="tag">MIT</span>
+        </div>
+
+        <div class="featured-actions">
+          <a class="btn btn-primary" href="purser.html">
+            مستندات فارسی
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          </a>
+          <a class="btn btn-ghost" href="https://github.com/akbarjimi/excel-importer-pipeline" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="width:18px;height:18px"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.69-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.29 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.21-1.49 3.18-1.18 3.18-1.18.63 1.59.23 2.76.11 3.05.74.8 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.06.78 2.14 0 1.55-.01 2.79-.01 3.17 0 .31.21.68.8.56C20.21 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>
+            GitHub
+          </a>
+          <a class="btn btn-ghost" href="https://packagist.org/packages/akbarjimi/purser" target="_blank" rel="noopener">
+            Packagist
+          </a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- سایر پروژه‌ها -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <h2 class="section-title">سایر پروژه‌ها</h2>
+          <p class="section-desc">مخازن کد و پروژه‌های جانبی‌ای که نگه‌داری می‌کنم.</p>
+        </div>
+      </div>
+      <div class="grid grid-cards" id="projectsGrid" aria-live="polite"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p class="footer-copy">© <span id="year">۱۴۰۴</span> محمد اکبری — ساخته‌شده با HTML، CSS و JavaScript خالص.</p>
+    <nav class="socials" aria-label="شبکه‌های اجتماعی">
+      <a href="https://github.com/akbarjimi" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://packagist.org/packages/akbarjimi/purser" target="_blank" rel="noopener">Packagist</a>
+      <a href="mailto:mohammad.akbari@zoho.com">ایمیل</a>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>

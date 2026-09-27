@@ -1,95 +1,275 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="وب‌سایت شخصی و فنی اکبر جیمی؛ توسعه‌دهنده نرم‌افزار، یادداشت‌ها، نوشته‌ها و پروژه‌ها.">
-  <title>اکبر جیمی — توسعه‌دهنده نرم‌افزار</title>
-  <link rel="stylesheet" href="assets/css/style.css">
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" content="#0b0d12">
+  <title>محمد اکبری — خانه</title>
+  <meta name="description" content="خانهٔ دیجیتال محمد اکبری؛ توسعه‌دهندهٔ بک‌اند PHP و Laravel. پروژه‌ها، دوره‌ها، بلاگ، یادداشت‌ها و تجربه‌های رسانه‌ای.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300..900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('theme');
+        if (!t) t = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        document.documentElement.dataset.theme = t;
+      } catch (e) { document.documentElement.dataset.theme = 'dark'; }
+    })();
+  </script>
+  <script src="js/data.js" defer></script>
+  <script src="js/main.js" defer></script>
 </head>
-<body>
+<body data-page="home">
+
+<a class="skip-link" href="#main">پرش به محتوای اصلی</a>
+
 <header class="site-header">
   <div class="container header-inner">
-    <a class="brand" href="index.html"><span class="brand-mark">ا</span><span>اکبر جیمی</span></a>
-    <button class="menu-toggle" aria-expanded="false" aria-controls="site-nav">منو</button>
-    <nav class="nav" id="site-nav" aria-label="ناوبری اصلی">
-      <ul class="nav-list">
-        <li class="nav-item active"><a class="nav-link" href="index.html">خانه</a></li>
-        <li class="nav-item"><a class="nav-link" href="resume.html">رزومه</a></li>
-        <li class="nav-item"><a class="nav-link" href="about.html">درباره من</a></li>
-        <li class="nav-item"><a class="nav-link" href="courses.html">دوره‌ها</a></li>
-        <li class="nav-item"><a class="nav-link" href="projects.html">پروژه‌ها</a></li>
-        <li class="nav-item has-dropdown">
-          <a class="nav-link" href="outside.html">خارج از کار</a>
-          <div class="dropdown" role="menu">
-            <a href="outside/movies.html">فیلم‌ها</a><a href="outside/games.html">بازی‌ها</a><a href="outside/books.html">کتاب‌ها</a><a href="outside/series.html">سریال‌ها</a><a href="outside/travel.html">سفرها</a>
-          </div>
-        </li>
-        <li class="nav-item"><a class="nav-link" href="papers.html">مقالات</a></li>
-        <li class="nav-item"><a class="nav-link" href="contact.html">تماس</a></li>
-        <li class="nav-item has-dropdown">
-          <a class="nav-link" href="blog.html">مطالب</a>
-          <div class="dropdown" role="menu"><a href="blog.html">وبلاگ</a><a href="notes.html">یادداشت‌ها</a></div>
-        </li>
-      </ul>
+    <a class="brand" href="index.html" aria-label="خانه">
+      <span class="brand-mark" aria-hidden="true">م</span>
+      <span class="brand-text">محمد اکبری</span>
+    </a>
+
+    <nav class="nav" id="siteNav" aria-label="ناوبری اصلی">
+      <a href="index.html">خانه</a>
+      <a href="projects.html">پروژه‌ها</a>
+      <a href="courses.html">دوره‌ها</a>
+      <a href="movies.html">فیلم</a>
+      <a href="series.html">سریال</a>
+      <a href="books.html">کتاب</a>
+      <a href="games.html">بازی</a>
+      <a href="blog.html">بلاگ</a>
+      <a href="notes.html">یادداشت‌ها</a>
     </nav>
+
+    <div class="header-actions">
+      <button class="icon-btn" id="themeToggle" type="button" aria-label="تغییر پوسته">
+        <svg class="ico ico-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="ico ico-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
+      </button>
+      <button class="icon-btn menu-btn" id="menuBtn" type="button" aria-label="منو" aria-expanded="false" aria-controls="siteNav">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
   </div>
 </header>
 
-<main>
+<main id="main">
+
+  <!-- HERO -->
   <section class="hero">
-    <div class="container hero-grid">
-      <div>
-        <span class="eyebrow">مهندس نرم‌افزار · Backend</span>
-        <h1>اینجا جایی است که کار، یادگیری و زندگی من به هم می‌رسند.</h1>
-        <p class="lead">من اکبر جیمی هستم؛ توسعه‌دهنده نرم‌افزار با تمرکز روی Backend. در این وب‌سایت پروژه‌ها، تجربه کاری، نوشته‌های فنی و چیزهایی را که خارج از دنیای کد دنبال می‌کنم ثبت می‌کنم.</p>
+    <div class="container hero-inner">
+      <div class="hero-text reveal">
+        <span class="eyebrow">
+          <span class="pulse" aria-hidden="true"></span>
+          توسعه‌دهندهٔ بک‌اند · PHP و Laravel · نویسنده
+        </span>
+        <h1 class="hero-title">
+          سلام، من <span class="grad">محمد اکبری</span> هستم
+        </h1>
+        <p class="lead">
+          توسعه‌دهندهٔ بک‌اند PHP و Laravel با بیش از هفت سال تجربهٔ حرفه‌ای.
+          اینجا خانهٔ دیجیتال من است؛ جایی که پروژه‌های متن‌باز، دوره‌های ویدیویی،
+          نوشته‌های بلند و یادداشت‌های کوتاهم را کنار هم جمع کرده‌ام — و همچنین
+          فیلم‌ها، سریال‌ها، کتاب‌ها و بازی‌هایی که تجربه‌شان کرده‌ام.
+        </p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="resume.html">مسیر حرفه‌ای من</a>
-          <a class="btn btn-ghost" href="blog.html">خواندن نوشته‌ها</a>
+          <a class="btn btn-primary" href="projects.html">
+            مشاهدهٔ پروژه‌ها
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          </a>
+          <a class="btn btn-ghost" href="purser.html">
+            مستندات Purser
+          </a>
+        </div>
+
+        <ul class="stats" role="list">
+          <li class="stat">
+            <strong id="statProjects" data-count="0">۰</strong>
+            <span>پروژهٔ متن‌باز</span>
+          </li>
+          <li class="stat">
+            <strong id="statCourses" data-count="0">۰</strong>
+            <span>دورهٔ ویدیویی</span>
+          </li>
+          <li class="stat">
+            <strong id="statPosts" data-count="0">۰</strong>
+            <span>نوشته و یادداشت</span>
+          </li>
+          <li class="stat">
+            <strong id="statMedia" data-count="0">۰</strong>
+            <span>تجربهٔ رسانه‌ای</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="hero-visual reveal" aria-hidden="true">
+        <div class="window">
+          <div class="window-bar">
+            <span class="dot dot-red"></span>
+            <span class="dot dot-yellow"></span>
+            <span class="dot dot-green"></span>
+            <span class="window-title">UserImportHandler.php</span>
+          </div>
+          <pre class="window-body"><code><span class="tk-key">namespace</span> App\Imports;
+
+<span class="tk-key">use</span> Akbarjimi\Purser\Contracts\ImportHandler;
+<span class="tk-key">use</span> Akbarjimi\Purser\DTOs\ValidatedRow;
+<span class="tk-key">use</span> App\Models\User;
+
+<span class="tk-key">final class</span> <span class="tk-type">UserImportHandler</span>
+    <span class="tk-key">implements</span> ImportHandler
+{
+    <span class="tk-key">public function</span> <span class="tk-fn">handle</span>(
+        <span class="tk-type">int</span> <span class="tk-var">$fileId</span>,
+        <span class="tk-type">iterable</span> <span class="tk-var">$rows</span>,
+    ): <span class="tk-type">void</span> {
+        <span class="tk-key">foreach</span> (<span class="tk-var">$rows</span> <span class="tk-key">as</span> <span class="tk-var">$row</span>) {
+            User::<span class="tk-fn">updateOrCreate</span>(
+                [<span class="tk-str">'email'</span> =&gt; <span class="tk-var">$row</span>-&gt;data[<span class="tk-str">'email'</span>]],
+                [<span class="tk-str">'name'</span>  =&gt; <span class="tk-var">$row</span>-&gt;data[<span class="tk-str">'name'</span>]],
+            );
+        }
+    }
+}</code></pre>
+        </div>
+        <div class="glow" aria-hidden="true"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- دربارهٔ من -->
+  <section class="section section-alt about-section">
+    <div class="container about-grid">
+      <div class="about-text reveal">
+        <h2 class="section-title">دربارهٔ من</h2>
+        <p>
+          توسعه‌دهندهٔ بک‌اند PHP و Laravel با بیش از هفت سال تجربهٔ حرفه‌ای؛
+          از اردیبهشت ۱۳۹۷ تا تیر ۱۴۰۴ در چهار شرکت مختلف کار کرده‌ام.
+          کارشناسی مهندسی نرم‌افزار از دانشکدهٔ شهید شمسی‌پور (دانشگاه ملی مهارت) تهران،
+          و تحصیلات ناتمام کارشناسی ارشد در دانشگاه صنعتی اصفهان.
+        </p>
+        <p>
+          در تیر ۱۴۰۴ از شرکت «شب» جدا شدم و از مهر همان سال خدمت سربازی‌ام را
+          آغاز کرده‌ام. این روزها میان خدمت، روی پروژه‌های متن‌باز و نوشتن کار می‌کنم.
+        </p>
+      </div>
+
+      <ul class="about-facts reveal" role="list">
+        <li class="fact">
+          <strong>۷+</strong>
+          <span>سال تجربهٔ بک‌اند</span>
+        </li>
+        <li class="fact">
+          <strong>۴</strong>
+          <span>شرکت در کارنامه</span>
+        </li>
+        <li class="fact">
+          <strong>۱۳۹۷</strong>
+          <span>شروع کار حرفه‌ای</span>
+        </li>
+        <li class="fact">
+          <strong>۱۴۰۴</strong>
+          <span>آغاز خدمت سربازی</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- پروژه‌های اخیر -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <h2 class="section-title">پروژه‌های اخیر</h2>
+          <p class="section-desc">کارهایی که در ماه‌های گذشته روی آن‌ها وقت گذاشته‌ام.</p>
+        </div>
+        <a class="section-link" href="projects.html">
+          همهٔ پروژه‌ها
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        </a>
+      </div>
+      <div class="grid grid-cards" id="homeProjects" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <!-- نوشته‌های اخیر -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <h2 class="section-title">نوشته‌های اخیر</h2>
+          <p class="section-desc">یادداشت‌های بلند دربارهٔ کتاب‌ها، تجربه‌ها و اندیشه‌ها.</p>
+        </div>
+        <a class="section-link" href="projects.html">
+          همهٔ نوشته‌ها
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        </a>
+      </div>
+      <div class="list" id="homePosts" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <!-- کاوش -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <h2 class="section-title">کاوش در سایت</h2>
+          <p class="section-desc">هر بخش، یک قفسه از چیزهایی که ساخته یا تجربه کرده‌ام.</p>
         </div>
       </div>
-      <div class="hero-card">
-        <small>در حال حاضر</small>
-        <strong>ساختن، یاد گرفتن و تبدیل ایده‌ها به پروژه‌های واقعی.</strong>
-        <small>از PHP و Laravel تا Go و سیستم‌های داده‌محور</small>
+      <div class="grid grid-tiles">
+        <a class="card tile reveal" href="courses.html">
+          <span class="tile-icon" aria-hidden="true">🎬</span>
+          <h3 class="card-title">دوره‌های ویدیویی</h3>
+          <p class="card-text">آموزش‌های ضبط‌شده در یوتیوب و پلتفرم‌های یادگیری.</p>
+        </a>
+        <a class="card tile reveal" href="movies.html">
+          <span class="tile-icon" aria-hidden="true">🍿</span>
+          <h3 class="card-title">فیلم‌ها</h3>
+          <p class="card-text">فیلم‌هایی که دیده‌ام، با امتیاز IMDb و خلاصهٔ داستان.</p>
+        </a>
+        <a class="card tile reveal" href="series.html">
+          <span class="tile-icon" aria-hidden="true">📺</span>
+          <h3 class="card-title">سریال‌ها</h3>
+          <p class="card-text">سریال‌هایی که تا انتها دنبال کرده‌ام.</p>
+        </a>
+        <a class="card tile reveal" href="books.html">
+          <span class="tile-icon" aria-hidden="true">📚</span>
+          <h3 class="card-title">کتاب‌ها</h3>
+          <p class="card-text">کتاب‌هایی که خوانده‌ام، با امتیاز و یادداشت.</p>
+        </a>
+        <a class="card tile reveal" href="games.html">
+          <span class="tile-icon" aria-hidden="true">🎮</span>
+          <h3 class="card-title">بازی‌ها</h3>
+          <p class="card-text">بازی‌هایی که تجربه کرده‌ام، با امتیاز متاکریتیک.</p>
+        </a>
+        <a class="card tile reveal" href="notes.html">
+          <span class="tile-icon" aria-hidden="true">📝</span>
+          <h3 class="card-title">یادداشت‌های کوتاه</h3>
+          <p class="card-text">تکه‌های کوچک از چیزهایی که یاد می‌گیرم.</p>
+        </a>
       </div>
     </div>
   </section>
 
-  <section class="section">
-    <div class="container">
-      <div class="section-head">
-        <div><h2>برای چه کسی این سایت ساخته شده؟</h2><p>دو مسیر متفاوت، در یک خانه شخصی.</p></div>
-      </div>
-      <div class="split">
-        <article class="panel"><h3>اگر برای شناخت حرفه‌ای من آمده‌اید</h3><p>از رزومه شروع کنید، بعد پروژه‌ها را ببینید. هدف این بخش این است که به جای فهرستی از مهارت‌ها، نحوه فکر کردن و چیزهایی را که واقعاً ساخته‌ام نشان دهد.</p><a class="text-link" href="projects.html">دیدن پروژه‌ها ←</a></article>
-        <article class="panel"><h3>اگر برای خودِ من آمده‌اید</h3><p>به وبلاگ، یادداشت‌ها و بخش «خارج از کار» سر بزنید. اینجا قرار نیست همه چیز رسمی و کاری باشد؛ بخشی از زندگی فکری و شخصی من هم اینجاست.</p><a class="text-link" href="outside.html">برو به خارج از کار ←</a></article>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="section-head"><div><h2>تازه‌ترین نوشته‌ها</h2><p>مطالب طولانی‌تر، با تمرکز روی تجربه و ایده.</p></div><a class="text-link" href="blog.html">همه نوشته‌ها ←</a></div>
-      <div class="cards">
-        <article class="card"><div class="card-media"><span class="media-label">یادداشت فنی · Backend</span></div><div class="card-body"><div class="card-meta">۱۴۰۵/۰۵/۲۰ · ۸ دقیقه مطالعه</div><h3>چرا بعضی سیستم‌ها با ساده‌تر شدن، بهتر می‌شوند؟</h3><p class="card-excerpt">یادداشت‌هایی درباره طراحی نرم‌افزار، پیچیدگی و تصمیم‌هایی که در پروژه‌های واقعی می‌گیریم.</p><div class="tags"><span class="tag">معماری</span><span class="tag">مهندسی نرم‌افزار</span></div></div></article>
-        <article class="card"><div class="card-media alt"><span class="media-label">مسیر یادگیری · Go</span></div><div class="card-body"><div class="card-meta">۱۴۰۵/۰۴/۰۸ · ۶ دقیقه مطالعه</div><h3>از PHP به Go؛ چیزی که در مهاجرت زبان واقعاً مهم است</h3><p class="card-excerpt">تجربه‌ای عملی از تغییر مدل ذهنی، نه فقط تغییر syntax.</p><div class="tags"><span class="tag">Go</span><span class="tag">یادگیری</span></div></div></article>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="section-head"><div><h2>چیزهایی که اخیراً ساخته‌ام</h2><p>نمونه‌هایی از پروژه‌ها و آزمایش‌های شخصی.</p></div><a class="text-link" href="projects.html">آرشیو پروژه‌ها ←</a></div>
-      <div class="cards">
-        <a class="card" href="projects/grokking-algorithms-go/"><div class="card-media dark"><span class="media-label">Go · Algorithms</span></div><div class="card-body"><h3>پیاده‌سازی الگوریتم‌های Grokking Algorithms</h3><p class="card-excerpt">تمرین عملی الگوریتم‌ها با Go، شکل‌گرفته از مطالعه یک کتاب.</p></div></a>
-        <a class="card" href="projects/faiss/"><div class="card-media"><span class="media-label">AI · Search</span></div><div class="card-body"><h3>FAISS</h3><p class="card-excerpt">یک آزمایش شخصی در مسیر ساخت سیستم‌های جست‌وجو و داده‌محور.</p></div></a>
-      </div>
-    </div>
-  </section>
 </main>
 
-<footer class="site-footer"><div class="container footer-inner"><span>© ۱۴۰۵ اکبر جیمی</span><span>ساخته‌شده با HTML، CSS و JavaScript</span></div></footer>
-<script src="assets/js/main.js"></script>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p class="footer-copy">© <span id="year">۱۴۰۴</span> محمد اکبری — ساخته‌شده با HTML، CSS و JavaScript خالص.</p>
+    <nav class="socials" aria-label="شبکه‌های اجتماعی">
+      <a href="https://github.com/akbarjimi" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://packagist.org/packages/akbarjimi/purser" target="_blank" rel="noopener">Packagist</a>
+      <a href="mailto:mohammad.akbari@zoho.com">ایمیل</a>
+    </nav>
+  </div>
+</footer>
+
 </body>
 </html>

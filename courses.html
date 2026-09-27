@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="dark light">
+    <meta name="theme-color" content="#0b0d12">
+    <title>دوره‌ها — محمد اکبری</title>
+    <meta name="description" content="دوره‌های ویدیویی محمد اکبری؛ از جمله «آموزش جامع FAISS: طراحی و پیاده‌سازی موتورهای جستجوی برداری» در مکتب‌خونه.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300..900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        (function () {
+            try {
+                var t = localStorage.getItem('theme');
+                if (!t) t = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+                document.documentElement.dataset.theme = t;
+            } catch (e) { document.documentElement.dataset.theme = 'dark'; }
+        })();
+    </script>
+    <script src="js/data.js" defer></script>
+    <script src="js/main.js" defer></script>
+</head>
+<body data-page="courses">
+
+<a class="skip-link" href="#main">پرش به محتوای اصلی</a>
+
+<header class="site-header">
+    <div class="container header-inner">
+        <a class="brand" href="index.html" aria-label="خانه">
+            <span class="brand-mark" aria-hidden="true">م</span>
+            <span class="brand-text">محمد اکبری</span>
+        </a>
+
+        <nav class="nav" id="siteNav" aria-label="ناوبری اصلی">
+            <a href="index.html">خانه</a>
+            <a href="projects.html">پروژه‌ها</a>
+            <a href="courses.html">دوره‌ها</a>
+            <a href="movies.html">فیلم</a>
+            <a href="series.html">سریال</a>
+            <a href="books.html">کتاب</a>
+            <a href="games.html">بازی</a>
+            <a href="blog.html">بلاگ</a>
+            <a href="notes.html">یادداشت‌ها</a>
+        </nav>
+
+        <div class="header-actions">
+            <button class="icon-btn" id="themeToggle" type="button" aria-label="تغییر پوسته">
+                <svg class="ico ico-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+                <svg class="ico ico-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
+            </button>
+            <button class="icon-btn menu-btn" id="menuBtn" type="button" aria-label="منو" aria-expanded="false" aria-controls="siteNav">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+            </button>
+        </div>
+    </div>
+</header>
+
+<main id="main">
+
+    <!-- ============ PAGE HERO ============ -->
+    <section class="page-hero">
+        <div class="container">
+            <span class="eyebrow reveal">آموزش</span>
+            <h1 class="page-title reveal">دوره‌های ویدیویی</h1>
+            <p class="lead reveal">
+                آموزش‌هایی که در پلتفرم‌های یادگیری و یوتیوب منتشر کرده‌ام.
+                تمرکز اصلی‌ام روی موضوعاتی است که در پروژه‌های واقعی با آن‌ها درگیر بوده‌ام:
+                از معماری بک‌اند و صف‌ها تا جستجوی برداری و سیستم‌های مقیاس‌پذیر.
+            </p>
+        </div>
+    </section>
+
+    <!-- ============ FEATURED COURSE: FAISS ============ -->
+    <section class="section course-featured" id="faiss">
+        <div class="container">
+
+            <!-- Course hero -->
+            <div class="course-hero reveal">
+
+                <div class="course-hero-main">
+          <span class="course-platform-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:14px;height:14px"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M10 9l5 3-5 3z"/></svg>
+            مکتب‌خونه
+          </span>
+                    <h2 class="course-title">
+                        آموزش جامع FAISS: طراحی و پیاده‌سازی موتورهای جستجوی برداری
+                    </h2>
+                    <p class="course-subtitle">
+                        Vector Search · از مبانی ریاضی تا معماری سیستم‌های مقیاس‌پذیر
+                    </p>
+
+                    <div class="course-rating-block">
+                        <div class="course-rating-score">
+                            <strong>۴٫۷</strong>
+                            <span class="course-rating-stars" aria-label="امتیاز ۴٫۷ از ۵">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor" class="star-partial" aria-hidden="true"><defs><linearGradient id="halfStar"><stop offset="70%" stop-color="currentColor"/><stop offset="70%" stop-color="var(--border)"/></linearGradient></defs><path fill="url(#halfStar)" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              </span>
+                        </div>
+                        <span class="course-rating-count">از ۹ رأی</span>
+                    </div>
+
+                    <div class="course-meta-strip">
+            <span class="course-meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+              ۱ ساعت و ۵۳ دقیقه
+            </span>
+                        <span class="course-meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"/><circle cx="10" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              ۶۲ دانشجو
+            </span>
+                        <span class="course-meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              ۲ دیدگاه
+            </span>
+                        <span class="course-meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M2 12h4l3-9 4 18 3-9h4"/></svg>
+              مقدماتی تا پیشرفته
+            </span>
+                        <span class="course-meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 11h18"/></svg>
+              آخرین به‌روزرسانی: مرداد ۱۴۰۵
+            </span>
+                    </div>
+
+                    <div class="course-hero-actions">
+                        <a class="btn btn-primary" href="https://maktabkhooneh.org/course-preview/%D8%A2%D9%85%D9%88%D8%B2%D8%B4-%D8%AC%D8%B3%D8%AA%D8%AC%D9%88%DB%8C-%D8%A8%D8%B1%D8%AF%D8%A7%D8%B1%DB%8C-%DA%A9%D9%85%DA%A9-%DA%A9%D8%AA%D8%A7%D8%A8%D8%AE%D8%A7%D9%86%D9%87-mk16732/?v=1" target="_blank" rel="noopener">
+                            ثبت‌نام در مکتب‌خونه
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:16px;height:16px"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                        </a>
+                        <a class="btn btn-ghost" href="https://github.com/akbarjimi/FAISS" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="width:18px;height:18px"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.69-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.29 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.21-1.49 3.18-1.18 3.18-1.18.63 1.59.23 2.76.11 3.05.74.8 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.06.78 2.14 0 1.55-.01 2.79-.01 3.17 0 .31.21.68.8.56C20.21 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>
+                            کدهای دوره
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Teaser video -->
+                <div class="course-hero-media reveal">
+                    <div class="video-frame">
+                        <video
+                                controls
+                                preload="metadata"
+                                playsinline
+                                poster=""
+                                aria-label="ویدیوی معرفی دورهٔ FAISS">
+                            <source src="https://32f17ef2763f31fd9dca788ce0bf8848.cdn.edge.sotoon.ir/cdn.maktabkhooneh.org/videos/58464731172237481786474462/720p.mp4?expire=4893471932&token=0ea70f3255cd04b456a68c4019bde71c&md5=DqcPMlXNBLRWpoxAGb3nHA==" type="video/mp4">
+                            مرورگر شما از پخش ویدیو پشتیبانی نمی‌کند.
+                        </video>
+                        <span class="video-label">ویدیوی معرفی دوره</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Course description -->
+            <div class="course-body">
+
+                <div class="course-main">
+
+                    <!-- Description -->
+                    <section class="course-section reveal">
+                        <h3 class="course-section-title">دربارهٔ این دوره</h3>
+                        <p>
+                            در دنیای مدرن هوش مصنوعی، جستجوی سریع و بهینه در میان میلیون‌ها
+                            <span dir="ltr">vector embedding</span> یک چالش بنیادین برای مهندسان
+                            نرم‌افزار و متخصصان داده است. این دورهٔ پروژه‌محور، شما را با معماری
+                            و پیاده‌سازی کتابخانهٔ قدرتمند <strong>FAISS</strong> آشنا می‌کند.
+                        </p>
+                        <p>
+                            روش تدریس بر پایهٔ پیشرفت از درک مفاهیم پایه تا طراحی سیستم‌های
+                            پیشرفته بنا شده است؛ از تحلیل الگوریتم‌های پایه مثل
+                            <span dir="ltr">K-Means</span> تا ساختارهای پیچیده‌ای مثل گراف‌های
+                            <span dir="ltr">HNSW</span> و تکنیک‌های فشرده‌سازی
+                            <span dir="ltr">IVF-PQ</span>. دانشجو در طول دوره مهارت‌های کلیدی در
+                            مدیریت حافظه، کاهش ابعاد داده و استفاده از شتاب‌دهنده‌های سخت‌افزاری
+                            (GPU) برای پردازش‌های سنگین را کسب می‌کند.
+                        </p>
+                        <p>
+                            یک مزیت کلیدی این دوره، تمرکز بر سناریوهای واقعی و محدودیت‌های
+                            صنعتی است؛ در پایان، دانشجو قادر خواهد بود یک سیستم جستجوی برداری
+                            مقیاس‌پذیر و کم‌تأخیر با مصرف حافظهٔ بهینه طراحی و پیاده‌سازی کند.
+                        </p>
+                    </section>
+
+                    <!-- What you'll learn -->
+                    <section class="course-section reveal">
+                        <h3 class="course-section-title">چه چیزی یاد می‌گیرید؟</h3>
+                        <ul class="course-outcomes">
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+                                <span>درک ساختار الگوریتم‌های <span dir="ltr">Approximate Nearest Neighbor (ANN)</span> و تحلیل پیچیدگی زمانی آن‌ها</span>
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+                                <span>پیاده‌سازی عملی ایندکس‌های گراف‌محور <span dir="ltr">(HNSW)</span> و مدیریت پارامترهای کلیدی مانند <code dir="ltr">efSearch</code></span>
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+                                <span>استقرار و شتاب‌دهی محاسبات برداری روی <span dir="ltr">GPU</span> برای کاهش زمان جستجو</span>
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+                                <span>معماری یک سیستم جستجو برای یک میلیون بردار با رعایت محدودیت‌های سخت‌گیرانهٔ حافظه و تأخیر</span>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <!-- Syllabus -->
+                    <section class="course-section reveal">
+                        <h3 class="course-section-title">سرفصل‌های دوره</h3>
+
+                        <div class="syllabus" id="syllabus">
+
+                            <details class="syllabus-module" open>
+                                <summary>
+                                    <span class="syllabus-num">۰۱</span>
+                                    <span class="syllabus-title">مبانی نظری و ریاضی</span>
+                                    <svg class="syllabus-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                                </summary>
+                                <ol class="syllabus-lessons">
+                                    <li>فلسفهٔ فضای برداری (Vector Spaces)</li>
+                                    <li>نفرین ابعاد بالا و محدودیت پایگاه‌داده‌های سنتی</li>
+                                    <li>تبدیل به بردار و جادوی معناشناسی (Semantics)</li>
+                                </ol>
+                            </details>
+
+                            <details class="syllabus-module">
+                                <summary>
+                                    <span class="syllabus-num">۰۲</span>
+                                    <span class="syllabus-title">ساخت پایه و درک محدودیت‌ها (تئوری + کدنویسی)</span>
+                                    <svg class="syllabus-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                                </summary>
+                                <ol class="syllabus-lessons">
+                                    <li>معماری FAISS و جستجوی دقیق (Exact Search)</li>
+                                    <li>هنر دسته‌بندی: ریاضیات <span dir="ltr">K-Means</span> و تسلیشن <span dir="ltr">Voronoi</span> (تئوری)</li>
+                                    <li>جستجوی تقریبی با <span dir="ltr">Inverted File Indexes (IVF)</span>: از تئوری تا پیاده‌سازی</li>
+                                    <li>علم اندازه‌گیری و معامله‌ها (Trade-offs)</li>
+                                </ol>
+                            </details>
+
+                            <details class="syllabus-module">
+                                <summary>
+                                    <span class="syllabus-num">۰۳</span>
+                                    <span class="syllabus-title">جادوی فشرده‌سازی و مدیریت حافظه</span>
+                                    <svg class="syllabus-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                                </summary>
+                                <ol class="syllabus-lessons">
+                                    <li>گلوگاه‌های سخت‌افزاری و کوانتیزاسیون اسکالر (Scalar Quantization)</li>
+                                    <li>شاهکار ریاضی FAISS: <span dir="ltr">Product Quantization (PQ)</span> — بخش اول</li>
+                                    <li>محاسبهٔ فاصلهٔ نامتقارن <span dir="ltr">(ADC)</span> در PQ — بخش دوم</li>
+                                    <li>پیاده‌سازی اسب بارکش صنعت <span dir="ltr">(IVF-PQ)</span>: ترکیب جادوی سرعت و حافظه</li>
+                                </ol>
+                            </details>
+
+                            <details class="syllabus-module">
+                                <summary>
+                                    <span class="syllabus-num">۰۴</span>
+                                    <span class="syllabus-title">معماری‌های پیشرفته و کاربرد واقعی</span>
+                                    <svg class="syllabus-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                                </summary>
+                                <ol class="syllabus-lessons">
+                                    <li>گراف‌ها و جهان‌های کوچک <span dir="ltr">(HNSW)</span>: فراتر از مرزهای خوشه‌بندی</li>
+                                    <li>پیاده‌سازی و مقایسهٔ <span dir="ltr">HNSW</span>: به‌کارگیری در عمل</li>
+                                    <li>شتاب‌دهی سخت‌افزاری <span dir="ltr">(GPU)</span> و پیش‌پردازش</li>
+                                </ol>
+                            </details>
+
+                            <details class="syllabus-module">
+                                <summary>
+                                    <span class="syllabus-num">۰۵</span>
+                                    <span class="syllabus-title">هنر تعامل و محصول نهایی</span>
+                                    <svg class="syllabus-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                                </summary>
+                                <ol class="syllabus-lessons">
+                                    <li>نقش FAISS در سیستم‌های مقیاس‌بزرگ و هنر تعامل</li>
+                                    <li>دفاع نهایی: هنر معماری و تصمیم‌گیری هوشمند</li>
+                                </ol>
+                            </details>
+
+                        </div>
+                    </section>
+
+                    <!-- Reviews -->
+                    <section class="course-section reveal">
+                        <h3 class="course-section-title">نظر دانشجوها</h3>
+
+                        <div class="reviews">
+
+                            <article class="review-card">
+                                <header class="review-head">
+                                    <div class="review-avatar" aria-hidden="true">م</div>
+                                    <div class="review-meta">
+                                        <strong>محمد منصوری</strong>
+                                        <span>۲۸ روز پیش</span>
+                                    </div>
+                                </header>
+                                <p class="review-text">
+                                    دورهٔ خوبی بود؛ بیشتر تئوری‌محور بود تا کدمحور — رویکردی که
+                                    شخصاً ترجیح می‌دهم. صدای مدرس واضح بود و خوب تدریس کرد.
+                                </p>
+                            </article>
+
+                            <article class="review-card">
+                                <header class="review-head">
+                                    <div class="review-avatar" aria-hidden="true">د</div>
+                                    <div class="review-meta">
+                                        <strong>دانشجوی دوره</strong>
+                                        <span>۱ ماه پیش</span>
+                                    </div>
+                                </header>
+                                <p class="review-text">
+                                    دورهٔ بسیار مفیدی بود. مباحث مربوط به جستجوی برداری و FAISS
+                                    خیلی واضح و روان توضیح داده شد؛ نقطهٔ شروع عالی‌ای برای هر کسی
+                                    که می‌خواهد وارد دنیای AI و بازیابی اطلاعات شود.
+                                </p>
+                            </article>
+
+                        </div>
+                    </section>
+
+                </div>
+
+                <!-- Sidebar: course info -->
+                <aside class="course-sidebar reveal">
+                    <div class="course-info-card">
+                        <h4 class="course-info-title">مشخصات دوره</h4>
+                        <dl class="course-info-list">
+                            <div class="course-info-row">
+                                <dt>پلتفرم</dt>
+                                <dd>مکتب‌خونه</dd>
+                            </div>
+                            <div class="course-info-row">
+                                <dt>مدت</dt>
+                                <dd>۱ ساعت و ۵۳ دقیقه</dd>
+                            </div>
+                            <div class="course-info-row">
+                                <dt>سطح</dt>
+                                <dd>مقدماتی تا پیشرفته</dd>
+                            </div>
+                            <div class="course-info-row">
+                                <dt>دانشجو</dt>
+                                <dd>۶۲ نفر</dd>
+                            </div>
+                            <div class="course-info-row">
+                                <dt>امتیاز</dt>
+                                <dd>۴٫۷ از ۵ (۹ رأی)</dd>
+                            </div>
+                            <div class="course-info-row">
+                                <dt>آخرین به‌روزرسانی</dt>
+                                <dd>مرداد ۱۴۰۵</dd>
+                            </div>
+                            <div class="course-info-row">
+                                <dt>مخزن کد</dt>
+                                <dd><a href="https://github.com/akbarjimi/FAISS" target="_blank" rel="noopener">github.com/akbarjimi/FAISS</a></dd>
+                            </div>
+                        </dl>
+                    </div>
+
+                    <div class="course-info-card">
+                        <h4 class="course-info-title">تکنولوژی‌ها</h4>
+                        <div class="course-tags">
+                            <span class="tag">FAISS</span>
+                            <span class="tag">Python</span>
+                            <span class="tag">Vector Search</span>
+                            <span class="tag">HNSW</span>
+                            <span class="tag">IVF-PQ</span>
+                            <span class="tag">K-Means</span>
+                            <span class="tag">GPU</span>
+                            <span class="tag">ANN</span>
+                        </div>
+                    </div>
+
+                    <div class="course-info-card course-info-cta">
+                        <p>آماده‌اید شروع کنید؟</p>
+                        <a class="btn btn-primary" href="https://maktabkhooneh.org/course-preview/%D8%A2%D9%85%D9%88%D8%B2%D8%B4-%D8%AC%D8%B3%D8%AA%D8%AC%D9%88%DB%8C-%D8%A8%D8%B1%D8%AF%D8%A7%D8%B1%DB%8C-%DA%A9%D9%85%DA%A9-%DA%A9%D8%AA%D8%A7%D8%A8%D8%AE%D8%A7%D9%86%D9%87-mk16732/?v=1" target="_blank" rel="noopener">
+                            مشاهدهٔ دوره در مکتب‌خونه
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:16px;height:16px"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                        </a>
+                    </div>
+                </aside>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ OTHER COURSES ============ -->
+    <section class="section section-alt">
+        <div class="container">
+            <div class="section-head reveal">
+                <div>
+                    <h2 class="section-title">سایر دوره‌ها</h2>
+                    <p class="section-desc">دوره‌های دیگری که در آن‌ها تدریس کرده‌ام یا در دست ضبط هستند.</p>
+                </div>
+            </div>
+            <div class="grid grid-cards" id="coursesGrid" aria-live="polite"></div>
+        </div>
+    </section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="container footer-inner">
+        <p class="footer-copy">© <span id="year">۱۴۰۴</span> محمد اکبری — ساخته‌شده با HTML، CSS و JavaScript خالص.</p>
+        <nav class="socials" aria-label="شبکه‌های اجتماعی">
+            <a href="https://github.com/akbarjimi" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://packagist.org/packages/akbarjimi/purser" target="_blank" rel="noopener">Packagist</a>
+            <a href="mailto:mohammad.akbari@zoho.com">ایمیل</a>
+        </nav>
+    </div>
+</footer>
+
+</body>
+</html>

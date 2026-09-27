@@ -1,0 +1,18 @@
+# محمد اکبری — akbarjimi.github.io
+# آخرین به‌روزرسانی: ۱۴۰۴
+
+User-agent: *
+Allow: /
+
+# جلوگیری از کراول فایل‌های سیستمی
+Disallow: /.git/
+Disallow: /.github/
+Disallow: /node_modules/
+Disallow: /assets/notes/*.jpg$
+Disallow: /assets/notes/*.png$
+
+# Sitemap
+Sitemap: https://akbarjimi.github.io/sitemap.xml
+
+# Host (فقط برای Yandex)
+Host: https://akbarjimi.github.io
