@@ -24,7 +24,179 @@ const DATA = {
         {href: 'games.html', label: 'بازی', page: 'games'},
         {href: 'blog.html', label: 'بلاگ', page: 'blog'},
         {href: 'notes.html', label: 'یادداشت‌ها', page: 'notes'},
+        {href: 'contact.html', label: 'تماس', page: 'contact'},
     ],
+
+    /* ---------- راه‌های تماس ---------- */
+    contacts: {
+        groups: [
+            {
+                title: 'ارتباط مستقیم',
+                items: [
+                    {
+                        id: 'email',
+                        label: 'ایمیل',
+                        icon: '📧',
+                        url: 'mailto:mohammad.akbari@zoho.com',
+                        handle: 'mohammad.akbari@zoho.com',
+                        action: 'ارسال ایمیل',
+                    },
+                    {
+                        id: 'phone',
+                        label: 'تلفن',
+                        icon: '📞',
+                        url: null,
+                        handle: null,
+                    },
+                    {
+                        id: 'location',
+                        label: 'موقعیت',
+                        icon: '📍',
+                        url: null,
+                        handle: 'تهران',
+                    },
+                ],
+            },
+            {
+                title: 'کد و متن‌باز',
+                items: [
+                    {
+                        id: 'github',
+                        label: 'GitHub',
+                        icon: '🐙',
+                        url: 'https://github.com/akbarjimi',
+                        handle: 'akbarjimi',
+                        action: 'مشاهدهٔ پروفایل',
+                    },
+                    {
+                        id: 'packagist',
+                        label: 'Packagist',
+                        icon: '📦',
+                        url: 'https://packagist.org/packages/akbarjimi/purser',
+                        handle: 'akbarjimi/purser',
+                        action: 'مشاهدهٔ پکیج',
+                    },
+                    {
+                        id: 'gitlab',
+                        label: 'GitLab',
+                        icon: '🦊',
+                        url: 'https://gitlab.com/akbarjimi',
+                        handle: 'akbarjimi',
+                        action: 'مشاهدهٔ پروفایل',
+                    },
+                    {
+                        id: 'stackoverflow',
+                        label: 'Stack Overflow',
+                        icon: '📚',
+                        url: null,
+                        handle: null,
+                    },
+                    {
+                        id: 'devto',
+                        label: 'Dev.to',
+                        icon: '💻',
+                        url: null,
+                        handle: null,
+                    },
+                ],
+            },
+            {
+                title: 'شبکه‌های اجتماعی',
+                items: [
+                    {
+                        id: 'twitter',
+                        label: 'توییتر / X',
+                        icon: '🐦',
+                        blockedInIran: true,
+                    },
+                    {
+                        id: 'instagram',
+                        label: 'اینستاگرام',
+                        icon: '📸',
+                        blockedInIran: true,
+                    },
+                    {
+                        id: 'telegram',
+                        label: 'تلگرام',
+                        icon: '💬',
+                        blockedInIran: true,
+                    },
+                    {
+                        id: 'linkedin',
+                        label: 'لینکدین',
+                        icon: '💼',
+                        blockedInIran: true,
+                    },
+                    {
+                        id: 'facebook',
+                        label: 'فیس‌بوک',
+                        icon: '📘',
+                        blockedInIran: true,
+                    },
+                    {
+                        id: 'youtube',
+                        label: 'یوتیوب',
+                        icon: '▶️',
+                        blockedInIran: true,
+                    },
+                    {
+                        id: 'mastodon',
+                        label: 'ماستودون',
+                        icon: '🐘',
+                        url: null,
+                        handle: null,
+                    },
+                    {
+                        id: 'bluesky',
+                        label: 'بلواسکای',
+                        icon: '🦋',
+                        url: null,
+                        handle: null,
+                    },
+                ],
+            },
+            {
+                title: 'پلتفرم‌های ایرانی',
+                items: [
+                    {
+                        id: 'aparat',
+                        label: 'آپارات',
+                        icon: '🎬',
+                        url: null,
+                        handle: null,
+                    },
+                    {
+                        id: 'eitaa',
+                        label: 'ایتا',
+                        icon: '✉️',
+                        url: null,
+                        handle: null,
+                    },
+                    {
+                        id: 'bale',
+                        label: 'بله',
+                        icon: '💌',
+                        url: null,
+                        handle: null,
+                    },
+                    {
+                        id: 'rubika',
+                        label: 'روبیکا',
+                        icon: '🎨',
+                        url: null,
+                        handle: null,
+                    },
+                    {
+                        id: 'virasty',
+                        label: 'ویراستی',
+                        icon: '🖋️',
+                        url: null,
+                        handle: null,
+                    },
+                ],
+            },
+        ],
+    },
 
     /* ---------- پروژه‌ها ---------- */
     projects: [

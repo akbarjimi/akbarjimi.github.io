@@ -1202,6 +1202,72 @@
   }
 
   /* =========================================================
+   صفحهٔ تماس — کارت‌های راه ارتباطی
+   ========================================================= */
+  function contactCardHTML(item) {
+    const isBlocked = item.blockedInIran === true;
+    const hasUrl = !!item.url;
+    const hasHandle = item.handle != null && item.handle !== '';
+
+    /* حالت خالی یا محدود */
+    if (isBlocked || (!hasUrl && !hasHandle)) {
+      const message = isBlocked
+          ? 'محمد آنجا نیست؛ آن پلتفرم هم اینجا نیست.'
+          : 'محمد اینجا نیست.';
+      return `
+        <article class="contact-card contact-card-empty${isBlocked ? ' contact-card-blocked' : ''}">
+          <span class="contact-icon" aria-hidden="true">${item.icon || '🔗'}</span>
+          <h3 class="contact-label">${escape(item.label)}</h3>
+          <p class="contact-handle contact-handle-empty">${escape(message)}</p>
+          ${isBlocked ? '<span class="contact-badge">دسترسی محدود</span>' : ''}
+        </article>
+      `;
+    }
+
+    /* حالت فعال */
+    const href = item.url || '';
+    const external = href && isExternal(href);
+    const actionLabel = item.action || (external ? 'مشاهده' : 'باز کردن');
+
+    const handleHTML = hasHandle
+        ? `<p class="contact-handle" dir="auto">${escape(item.handle)}</p>`
+        : '';
+
+    const linkHTML = href
+        ? `<a class="contact-action" href="${escape(href)}" ${linkAttrs(href)}>
+             ${escape(actionLabel)}
+             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+           </a>`
+        : '';
+
+    return `
+      <article class="contact-card">
+        <span class="contact-icon" aria-hidden="true">${item.icon || '🔗'}</span>
+        <h3 class="contact-label">${escape(item.label)}</h3>
+        ${handleHTML}
+        ${linkHTML}
+      </article>
+    `;
+  }
+
+  function renderContactPage() {
+    const container = document.getElementById('contactGroups');
+    if (!container) return;
+
+    const groups = (DATA.contacts && DATA.contacts.groups) || [];
+    if (!groups.length) return;
+
+    container.innerHTML = groups.map((group) => `
+      <section class="contact-group">
+        <h2 class="contact-group-title">${escape(group.title)}</h2>
+        <div class="contact-grid">
+          ${(group.items || []).map(contactCardHTML).join('')}
+        </div>
+      </section>
+    `).join('');
+  }
+
+  /* =========================================================
      ۱۰. صفحهٔ مستندات Purser
      ========================================================= */
   function setupCopyButtons(root) {
@@ -1680,6 +1746,7 @@
     renderGamesPage();
     bindBooksToolbar();
     renderPapersPage();
+    renderContactPage();
     renderYear();
 
     /* سپس observerها */
