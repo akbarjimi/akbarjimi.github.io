@@ -87,16 +87,22 @@
   });
 
   /* =========================================================
-     ۴. لینک فعال در ناوبری
+     ۴. منوی اصلی — رندر از DATA.nav
      ========================================================= */
-  const page = document.body.dataset.page;
-  $$('#siteNav a').forEach((a) => {
-    const href = a.getAttribute('href');
-    if (href === `${page}.html` || (page === 'home' && href === 'index.html')) {
-      a.setAttribute('aria-current', 'page');
-    }
-  });
+  function renderSiteNav() {
+    const nav = document.getElementById('siteNav');
+    if (!nav) return;
+    const items = DATA.nav || [];
+    if (!items.length) return;
 
+    const current = document.body.dataset.page;
+    nav.innerHTML = items.map((item) => {
+      const isCurrent = item.page === current ||
+          (current === 'home' && item.href === 'index.html');
+      const currentAttr = isCurrent ? ' aria-current="page"' : '';
+      return `<a href="${escape(item.href)}"${currentAttr}>${escape(item.label)}</a>`;
+    }).join('');
+  }
   /* =========================================================
      ۵. Reveal on scroll — observer مشترک
      ========================================================= */
@@ -1662,6 +1668,7 @@
      ========================================================= */
   function init() {
     /* ابتدا همهٔ رندرها */
+    renderSiteNav();
     renderStats();
     renderHomeProjects();
     renderProjectsGrid();

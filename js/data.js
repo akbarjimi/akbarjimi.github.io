@@ -12,6 +12,20 @@ const DATA = {
         goodreads: 'https://www.goodreads.com/user/show/',
     },
 
+    /* ---------- منوی اصلی ---------- */
+    nav: [
+        {href: 'index.html', label: 'خانه', page: 'home'},
+        {href: 'projects.html', label: 'پروژه‌ها', page: 'projects'},
+        {href: 'courses.html', label: 'دوره‌ها', page: 'courses'},
+        {href: 'movies.html', label: 'فیلم', page: 'movies'},
+        {href: 'series.html', label: 'سریال', page: 'series'},
+        {href: 'books.html', label: 'کتاب', page: 'books'},
+        {href: 'papers.html', label: 'مقالات', page: 'papers'},
+        {href: 'games.html', label: 'بازی', page: 'games'},
+        {href: 'blog.html', label: 'بلاگ', page: 'blog'},
+        {href: 'notes.html', label: 'یادداشت‌ها', page: 'notes'},
+    ],
+
     /* ---------- پروژه‌ها ---------- */
     projects: [
         {

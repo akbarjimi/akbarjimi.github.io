@@ -635,25 +635,6 @@ button {
 @media (max-width: 960px) {
   .hero-inner { grid-template-columns: 1fr; }
   .hero-visual { order: -1; max-width: 520px; }
-  .nav {
-    position: fixed;
-    inset: var(--header-h) 0 auto 0;
-    flex-direction: column;
-    padding: 16px;
-    background: var(--bg-elev);
-    border-block-end: 1px solid var(--border);
-    transform: translateY(-8px);
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease), visibility var(--dur);
-    margin: 0;
-    gap: 2px;
-    max-height: calc(100dvh - var(--header-h));
-    overflow-y: auto;
-  }
-  .nav.is-open { opacity: 1; visibility: visible; transform: none; }
-  .nav a { padding: 12px 14px; font-size: 1rem; }
-  .menu-btn { display: grid; }
 }
 
 @media (max-width: 620px) {
@@ -3308,3 +3289,48 @@ body.search-open {
   }
 }
 
+/* =========================================================
+   Navigation — JS injection + noscript fallback
+   ========================================================= */
+
+/* noscript wrapper is transparent so its children join the flex row */
+.nav > noscript {
+  display: contents;
+}
+
+/* Show hamburger earlier so a 10-item nav never wraps awkwardly */
+@media (max-width: 1080px) {
+  .nav {
+    position: fixed;
+    inset: var(--header-h) 0 auto 0;
+    flex-direction: column;
+    padding: 16px;
+    background: var(--bg-elev);
+    border-block-end: 1px solid var(--border);
+    transform: translateY(-8px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--dur) var(--ease),
+    transform var(--dur) var(--ease),
+    visibility var(--dur);
+    margin: 0;
+    gap: 2px;
+    max-height: calc(100dvh - var(--header-h));
+    overflow-y: auto;
+  }
+
+  .nav.is-open {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+
+  .nav a {
+    padding: 12px 14px;
+    font-size: 1rem;
+  }
+
+  .menu-btn {
+    display: grid;
+  }
+}
