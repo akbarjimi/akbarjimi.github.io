@@ -237,15 +237,32 @@
   /* =========================================================
      ۸. کارت‌سازها
      ========================================================= */
+  /* =========================================================
+     ۶. کارت پروژه
+     ========================================================= */
+  const PROJECT_CATEGORY_LABEL = {
+    'open-source': 'متن‌باز',
+    'company-task': 'تسک استخدامی',
+    'challenge': 'چالش',
+  };
+
   function projectCardHTML(p) {
     const external = isExternal(p.url);
     const cta = external ? 'مشاهدهٔ مخزن' : 'مشاهدهٔ پروژه';
+    const categoryLabel = PROJECT_CATEGORY_LABEL[p.category] || null;
+
     return `
-      <article class="card project-card">
+      <article class="card project-card" data-category="${escape(p.category || '')}">
         <div class="card-head">
           <span class="project-icon" aria-hidden="true">${p.icon || '📦'}</span>
           <h3 class="card-title">${escape(p.title)}</h3>
         </div>
+        ${categoryLabel || p.company
+        ? `<div class="project-badges">
+               ${categoryLabel ? `<span class="project-badge project-badge-${escape(p.category)}">${escape(categoryLabel)}</span>` : ''}
+               ${p.company ? `<span class="project-badge project-badge-company">${escape(p.company)}</span>` : ''}
+             </div>`
+        : ''}
         ${p.subtitle ? `<p class="project-sub">${escape(p.subtitle)}</p>` : ''}
         <p class="card-text">${escape(p.description)}</p>
         <div class="project-meta">
@@ -337,6 +354,13 @@
 
     const note = m.note ? `<p class="media-note">${escape(m.note)}</p>` : '';
 
+    const noteLink = m.noteUrl
+        ? `<a class="media-note-link" href="${escape(m.noteUrl)}">
+             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg>
+             یادداشت کامل
+           </a>`
+        : '';
+
     const external = m.trakt
         ? `<a class="media-external" href="${escape(m.trakt)}" target="_blank" rel="noopener">
            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
@@ -361,6 +385,7 @@
           <p class="media-summary">${escape(m.summary)}</p>
           ${castLine}
           ${note}
+          ${noteLink}
           ${genres}
           ${external}
         </div>
@@ -745,10 +770,41 @@
   }
 
   function renderProjectsGrid() {
-    const box = $('#projectsGrid');
-    if (!box) return;
-    const items = DATA.projects.filter(p => p.id !== 'purser');
-    box.innerHTML = items.map(projectCardHTML).join('');
+    const grid = $('#projectsGrid');
+    const box = $('#projectsFilters');
+    const empty = $('#projectsEmpty');
+    if (!grid) return;
+
+    /* روی صفحهٔ پروژه‌ها، Purser در بخش featured بالای صفحه نمایش داده می‌شود */
+    const items = (DATA.projects || []).filter(p => p.id !== 'purser');
+
+    const render = (filter) => {
+      const visible = filter === 'all'
+          ? items
+          : items.filter(p => p.category === filter);
+
+      if (!visible.length) {
+        grid.innerHTML = '';
+        if (empty) empty.hidden = false;
+        return;
+      }
+      grid.innerHTML = visible.map(projectCardHTML).join('');
+      if (empty) empty.hidden = true;
+      setupReveal();
+    };
+
+    /* فیلتر چیپ‌ها */
+    if (box) {
+      const chips = box.querySelectorAll('.filter-chip');
+      chips.forEach((chip) => {
+        chip.addEventListener('click', () => {
+          chips.forEach(c => c.classList.toggle('is-active', c === chip));
+          render(chip.dataset.filter || 'all');
+        });
+      });
+    }
+
+    render('all');
   }
 
   function renderCoursesGrid() {

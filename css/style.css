@@ -3497,3 +3497,198 @@ body.search-open {
     font-size: 1.5rem;
   }
 }
+
+/* =========================================================
+   Step 3 — Mobile overflow fixes
+   These rules override earlier ones. Append at the very end
+   of the stylesheet so they take precedence.
+   ========================================================= */
+
+/* ---------- 1. Let flex/grid children shrink below content size ---------- */
+.hero-text,
+.hero-visual,
+.about-text,
+.about-facts,
+.about-text > *,
+.course-main,
+.course-sidebar,
+.course-hero-main,
+.course-hero-media,
+.docs-content,
+.docs-toc,
+.media-body,
+.paper-card,
+.blog-post,
+.note-body,
+.list-item,
+.list-item > * {
+  min-width: 0;
+}
+
+/* ---------- 2. Long unbreakable strings ---------- */
+.card-text,
+.list-excerpt,
+.list-title,
+.media-title,
+.media-summary,
+.media-meta,
+.media-cast,
+.note-text,
+.paper-summary,
+.paper-meta,
+.paper-title,
+.course-section p,
+.course-title,
+.docs-section p,
+.docs-aside,
+.callout p,
+.prose,
+.contact-handle,
+.contact-label {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* ---------- 3. Code blocks must never push their parent ---------- */
+.window,
+.window-body,
+.code-block,
+.code-block pre {
+  max-width: 100%;
+  min-width: 0;
+}
+
+pre {
+  max-width: 100%;
+}
+
+/* ---------- 4. Single-column fallbacks use minmax(0, 1fr) ---------- */
+@media (max-width: 960px) {
+  .hero-inner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .course-hero {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .course-body {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .docs-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 860px) {
+  .about-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .about-facts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 620px) {
+  .stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .list-item {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .papers-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .contact-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .about-facts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* ---------- Notes link on movie cards ---------- */
+.media-note-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  align-self: flex-start;
+  margin-block-start: 4px;
+  padding: 5px 12px;
+  border-radius: var(--r-full);
+  font-size: .78rem;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--border));
+  transition: gap var(--dur) var(--ease),
+  background-color var(--dur),
+  border-color var(--dur);
+}
+
+.media-note-link:hover {
+  gap: 9px;
+  background: color-mix(in srgb, var(--accent) 20%, var(--bg-elev));
+  border-color: var(--accent);
+}
+
+.media-note-link svg {
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
+}
+
+/* =========================================================
+   Projects — category badges
+   ========================================================= */
+.project-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-block: -4px 12px;
+}
+
+.project-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: var(--r-full);
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: -.005em;
+  line-height: 1.4;
+}
+
+.project-badge-open-source {
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--border));
+}
+
+.project-badge-company-task {
+  color: #f59e0b;
+  background: color-mix(in srgb, #f59e0b 12%, transparent);
+  border: 1px solid color-mix(in srgb, #f59e0b 35%, var(--border));
+}
+
+.project-badge-challenge {
+  color: #22c55e;
+  background: color-mix(in srgb, #22c55e 12%, transparent);
+  border: 1px solid color-mix(in srgb, #22c55e 35%, var(--border));
+}
+
+.project-badge-company {
+  color: var(--text-muted);
+  background: var(--bg-alt);
+  border: 1px solid var(--border-soft);
+}

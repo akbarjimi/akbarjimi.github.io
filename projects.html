@@ -5,25 +5,49 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="dark light">
   <meta name="theme-color" content="#0b0d12">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
   <title>پروژه‌ها — محمد اکبری</title>
-  <meta name="description" content="پروژه‌های متن‌باز محمد اکبری: Purser، راه‌حل‌های LeetCode در Go و کدهای دورهٔ FAISS.">
+  <meta name="description" content="پروژه‌های متن‌باز، تسک‌های استخدامی و چالش‌های محمد اکبری.">
+  <meta name="author" content="محمد اکبری">
+  <link rel="canonical" href="https://akbarjimi.github.io/projects.html">
+
+  <!-- Icons -->
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="icon" href="favicon.ico" sizes="32x32">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="mask-icon" href="favicon.svg" color="#7c5cff">
   <link rel="manifest" href="site.webmanifest">
+
+  <!-- Feeds -->
+  <link rel="alternate" type="application/rss+xml" title="محمد اکبری — فید RSS" href="feed.xml">
+  <link rel="alternate" type="application/atom+xml" title="محمد اکبری — فید Atom" href="atom.xml">
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300..900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
   <link rel="stylesheet" href="css/style.css">
+
+  <!-- Theme (before paint, avoids FOUC) -->
   <script>
     (function () {
       try {
         var t = localStorage.getItem('theme');
         if (!t) t = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
         document.documentElement.dataset.theme = t;
-      } catch (e) { document.documentElement.dataset.theme = 'dark'; }
+        var meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute('content', t === 'dark' ? '#0b0d12' : '#f6f7fb');
+      } catch (e) {
+        document.documentElement.dataset.theme = 'dark';
+      }
     })();
   </script>
+
+  <!-- Scripts -->
   <script src="js/data.js" defer></script>
   <script src="js/main.js" defer></script>
 </head>
@@ -39,15 +63,19 @@
     </a>
 
     <nav class="nav" id="siteNav" aria-label="ناوبری اصلی">
-      <a href="index.html">خانه</a>
-      <a href="projects.html">پروژه‌ها</a>
-      <a href="courses.html">دوره‌ها</a>
-      <a href="movies.html">فیلم</a>
-      <a href="series.html">سریال</a>
-      <a href="books.html">کتاب</a>
-      <a href="games.html">بازی</a>
-      <a href="blog.html">بلاگ</a>
-      <a href="notes.html">یادداشت‌ها</a>
+      <noscript>
+        <a href="index.html">خانه</a>
+        <a href="projects.html">پروژه‌ها</a>
+        <a href="courses.html">دوره‌ها</a>
+        <a href="movies.html">فیلم</a>
+        <a href="series.html">سریال</a>
+        <a href="books.html">کتاب</a>
+        <a href="papers.html">مقالات</a>
+        <a href="games.html">بازی</a>
+        <a href="blog.html">بلاگ</a>
+        <a href="notes.html">یادداشت‌ها</a>
+        <a href="contact.html">تماس</a>
+      </noscript>
     </nav>
 
     <div class="header-actions">
@@ -70,8 +98,8 @@
       <span class="eyebrow reveal">کارها</span>
       <h1 class="page-title reveal">پروژه‌ها</h1>
       <p class="lead reveal">
-        مجموعه‌ای از پروژه‌های متن‌باز و مخازن کدی که در طول این سال‌ها ساخته‌ام.
-        همهٔ کدها روی گیت‌هاب در دسترس هستند و برای بیشترشان مستندات یا توضیح فارسی دارم.
+        مجموعه‌ای از پروژه‌های متن‌باز، تسک‌های استخدامی و چالش‌هایی که در طول
+        این سال‌ها روی آن‌ها کار کرده‌ام. کدها روی گیت‌هاب در دسترس هستند.
       </p>
     </div>
   </section>
@@ -146,10 +174,23 @@
       <div class="section-head reveal">
         <div>
           <h2 class="section-title">سایر پروژه‌ها</h2>
-          <p class="section-desc">مخازن کد و پروژه‌های جانبی‌ای که نگه‌داری می‌کنم.</p>
+          <p class="section-desc">پروژه‌های متن‌باز، تسک‌های استخدامی و چالش‌ها.</p>
         </div>
       </div>
+
+      <!-- فیلتر دسته‌بندی -->
+      <div class="media-filters reveal" id="projectsFilters" role="group" aria-label="فیلتر بر اساس دسته">
+        <button type="button" class="filter-chip is-active" data-filter="all">همه</button>
+        <button type="button" class="filter-chip" data-filter="open-source">متن‌باز</button>
+        <button type="button" class="filter-chip" data-filter="company-task">تسک‌های استخدامی</button>
+        <button type="button" class="filter-chip" data-filter="challenge">چالش‌ها</button>
+      </div>
+
       <div class="grid grid-cards" id="projectsGrid" aria-live="polite"></div>
+
+      <div class="empty-state" id="projectsEmpty" hidden>
+        <p>پروژه‌ای با این فیلتر پیدا نشد.</p>
+      </div>
     </div>
   </section>
 
