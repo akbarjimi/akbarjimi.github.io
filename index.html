@@ -5,25 +5,49 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="dark light">
   <meta name="theme-color" content="#0b0d12">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
   <title>محمد اکبری — خانه</title>
   <meta name="description" content="خانهٔ دیجیتال محمد اکبری؛ توسعه‌دهندهٔ بک‌اند PHP و Laravel. پروژه‌ها، دوره‌ها، بلاگ، یادداشت‌ها و تجربه‌های رسانه‌ای.">
+  <meta name="author" content="محمد اکبری">
+  <link rel="canonical" href="https://akbarjimi.github.io/">
+
+  <!-- Icons -->
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="icon" href="favicon.ico" sizes="32x32">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="mask-icon" href="favicon.svg" color="#7c5cff">
   <link rel="manifest" href="site.webmanifest">
+
+  <!-- Feeds -->
+  <link rel="alternate" type="application/rss+xml" title="محمد اکبری — فید RSS" href="feed.xml">
+  <link rel="alternate" type="application/atom+xml" title="محمد اکبری — فید Atom" href="atom.xml">
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300..900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
   <link rel="stylesheet" href="css/style.css">
+
+  <!-- Theme (before paint, avoids FOUC) -->
   <script>
     (function () {
       try {
         var t = localStorage.getItem('theme');
         if (!t) t = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
         document.documentElement.dataset.theme = t;
-      } catch (e) { document.documentElement.dataset.theme = 'dark'; }
+        var meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute('content', t === 'dark' ? '#0b0d12' : '#f6f7fb');
+      } catch (e) {
+        document.documentElement.dataset.theme = 'dark';
+      }
     })();
   </script>
+
+  <!-- Scripts -->
   <script src="js/data.js" defer></script>
   <script src="js/main.js" defer></script>
 </head>
@@ -212,7 +236,7 @@
           <h2 class="section-title">نوشته‌های اخیر</h2>
           <p class="section-desc">یادداشت‌های بلند دربارهٔ کتاب‌ها، تجربه‌ها و اندیشه‌ها.</p>
         </div>
-        <a class="section-link" href="projects.html">
+        <a class="section-link" href="blog.html">
           همهٔ نوشته‌ها
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
         </a>
@@ -250,6 +274,11 @@
           <span class="tile-icon" aria-hidden="true">📚</span>
           <h3 class="card-title">کتاب‌ها</h3>
           <p class="card-text">کتاب‌هایی که خوانده‌ام، با امتیاز و یادداشت.</p>
+        </a>
+        <a class="card tile reveal" href="papers.html">
+          <span class="tile-icon" aria-hidden="true">📄</span>
+          <h3 class="card-title">مقالات علمی</h3>
+          <p class="card-text">مقالاتی که خوانده‌ام، با دستاورد اصلی هرکدام.</p>
         </a>
         <a class="card tile reveal" href="games.html">
           <span class="tile-icon" aria-hidden="true">🎮</span>
