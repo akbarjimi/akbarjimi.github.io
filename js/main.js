@@ -1324,6 +1324,109 @@
   }
 
   /* =========================================================
+   صفحهٔ رزومه
+   ========================================================= */
+  function renderResumePage() {
+    const r = DATA.resume;
+    if (!r) return;
+
+    /* اطلاعات پایه */
+    const factsBox = document.getElementById('resumeFacts');
+    if (factsBox && r.facts?.length) {
+      factsBox.innerHTML = r.facts.map(f => `
+        <div>
+          <dt>${escape(f.label)}</dt>
+          <dd>${f.href
+          ? `<a href="${escape(f.href)}" ${linkAttrs(f.href)}>${escape(f.value)}</a>`
+          : escape(f.value)}</dd>
+        </div>
+      `).join('');
+    }
+
+    /* مهارت‌ها */
+    const skillsBox = document.getElementById('resumeSkills');
+    if (skillsBox && r.skills?.length) {
+      skillsBox.innerHTML = r.skills.map(g => `
+        <div class="resume-skill-group">
+          <div class="resume-skill-group-title">${escape(g.group)}</div>
+          <div class="resume-skill-tags">
+            ${(g.items || []).map(s => `<span class="tag">${escape(s)}</span>`).join('')}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    /* زبان‌ها */
+    const langBox = document.getElementById('resumeLanguages');
+    if (langBox && r.languages?.length) {
+      langBox.innerHTML = r.languages.map(l => `
+        <li>
+          <strong>${escape(l.name)}</strong>
+          <span>${escape(l.level)}</span>
+        </li>
+      `).join('');
+    }
+
+    /* سابقهٔ کاری */
+    const expBox = document.getElementById('resumeExperience');
+    if (expBox && r.experience?.length) {
+      expBox.innerHTML = r.experience.map(exp => {
+        const from = faDateMonth(exp.from) || '—';
+        const to = exp.to ? faDateMonth(exp.to) : 'اکنون';
+        const meta = [from + ' — ' + to, exp.location].filter(Boolean).join(' · ');
+        return `
+          <li class="resume-timeline-item">
+            <span class="resume-timeline-marker" aria-hidden="true"></span>
+            <article class="resume-timeline-body">
+              <header class="resume-timeline-head">
+                <h3 class="resume-timeline-role">${escape(exp.role)}</h3>
+                <span class="resume-timeline-company">${escape(exp.company)}</span>
+              </header>
+              <time class="resume-timeline-dates">${escape(meta)}</time>
+              ${exp.summary ? `<p class="resume-timeline-summary">${escape(exp.summary)}</p>` : ''}
+              ${exp.bullets?.length ? `
+                <ul class="resume-timeline-bullets">
+                  ${exp.bullets.map(b => `<li>${escape(b)}</li>`).join('')}
+                </ul>
+              ` : ''}
+              ${exp.stack?.length ? `
+                <div class="resume-timeline-stack">
+                  ${exp.stack.map(s => `<span class="tag">${escape(s)}</span>`).join('')}
+                </div>
+              ` : ''}
+            </article>
+          </li>
+        `;
+      }).join('');
+    }
+
+    /* تحصیلات */
+    const eduBox = document.getElementById('resumeEducation');
+    if (eduBox && r.education?.length) {
+      eduBox.innerHTML = r.education.map(edu => {
+        const from = faDateMonth(edu.from) || '—';
+        const to = edu.to
+            ? faDateMonth(edu.to)
+            : (edu.status === 'ناتمام' ? 'ناتمام' : 'اکنون');
+        const meta = [from + ' — ' + to, edu.location].filter(Boolean).join(' · ');
+        return `
+          <li class="resume-timeline-item">
+            <span class="resume-timeline-marker" aria-hidden="true"></span>
+            <article class="resume-timeline-body">
+              <header class="resume-timeline-head">
+                <h3 class="resume-timeline-role">${escape(edu.degree)}</h3>
+                <span class="resume-timeline-company">${escape(edu.institution)}</span>
+              </header>
+              <time class="resume-timeline-dates">${escape(meta)}</time>
+              ${edu.note ? `<p class="resume-timeline-summary">${escape(edu.note)}</p>` : ''}
+            </article>
+          </li>
+        `;
+      }).join('');
+    }
+  }
+
+  /* =========================================================
      ۱۰. صفحهٔ مستندات Purser
      ========================================================= */
   function setupCopyButtons(root) {
@@ -1519,6 +1622,7 @@
     push('صفحه', '🎮', 'بازی‌ها', 'بازی‌هایی که تجربه کرده‌ام', 'games.html');
     push('صفحه', '✍️', 'بلاگ', 'نوشته‌های بلند', 'blog.html');
     push('صفحه', '📝', 'یادداشت‌ها', 'یادداشت‌های کوتاه', 'notes.html');
+    push('صفحه', '📄', 'رزومه', 'سابقهٔ کاری و تحصیلات', 'resume.html');
 
     (DATA.projects || []).forEach(p => {
       push('پروژه', p.icon || '📦', p.title, p.subtitle || p.description,
@@ -1804,6 +1908,7 @@
     renderPapersPage();
     renderContactPage();
     renderYear();
+    renderResumePage();
 
     /* سپس observerها */
     setupReveal();

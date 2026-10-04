@@ -198,6 +198,90 @@ const DATA = {
         ],
     },
 
+    /* ---------- رزومه ---------- */
+    resume: {
+        facts: [
+            {label: 'تاریخ تولد', value: '۱ آبان ۱۳۷۳ — بیرجند'},
+            {label: 'محل سکونت', value: 'تهران'},
+            {label: 'وضعیت خدمت', value: 'در حال خدمت سربازی (از مهر ۱۴۰۴)'},
+            {label: 'ایمیل', value: 'mohammad.akbari@zoho.com', href: 'mailto:mohammad.akbari@zoho.com'},
+            {label: 'GitHub', value: 'github.com/akbarjimi', href: 'https://github.com/akbarjimi'},
+        ],
+        skills: [
+            {group: 'زبان‌ها', items: ['PHP', 'JavaScript', 'Go', 'Python', 'SQL']},
+            {group: 'فریم‌ورک‌ها', items: ['Laravel', 'Symfony']},
+            {group: 'پایگاه داده', items: ['MySQL', 'PostgreSQL', 'Redis']},
+            {group: 'زیرساخت', items: ['Docker', 'Linux', 'Git', 'CI/CD']},
+            {group: 'الگوها و مفاهیم', items: ['Queue', 'Event-Driven', 'DDD', 'REST']},
+        ],
+        languages: [
+            {name: 'فارسی', level: 'زبان مادری'},
+            {name: 'انگلیسی', level: 'خواندن و نوشتن تخصصی'},
+        ],
+
+        /* TODO: تأیید یا اصلاح کن — تاریخ‌ها و شرح‌ها حدس اولیه‌اند. */
+        experience: [
+            {
+                company: 'شب',
+                role: 'توسعه‌دهندهٔ بک‌اند',
+                from: '1402-01', to: '1404-04',
+                location: 'تهران',
+                summary: 'TODO: یک یا دو خط دربارهٔ مسئولیت‌ها و دستاوردهای این دوره.',
+                bullets: [
+                    'TODO: دستاورد کلیدی ۱',
+                    'TODO: دستاورد کلیدی ۲',
+                ],
+                stack: ['Laravel', 'PHP', 'MySQL', 'Redis'],
+            },
+            {
+                company: 'ابرآروان',
+                role: 'توسعه‌دهندهٔ بک‌اند',
+                from: '1400-01', to: '1402-01',
+                location: 'تهران',
+                summary: 'TODO',
+                bullets: ['TODO'],
+                stack: ['Laravel', 'PHP', 'Cloud'],
+            },
+            {
+                company: 'اسنپ‌شاپ',
+                role: 'توسعه‌دهندهٔ بک‌اند',
+                from: '1398-01', to: '1400-01',
+                location: 'تهران',
+                summary: 'TODO',
+                bullets: ['TODO'],
+                stack: ['Laravel', 'PHP'],
+            },
+            {
+                company: 'سیب‌چه',
+                role: 'توسعه‌دهندهٔ بک‌اند',
+                from: '1397-02', to: '1398-01',
+                location: 'تهران',
+                summary: 'TODO',
+                bullets: ['TODO'],
+                stack: ['Laravel', 'PHP'],
+            },
+        ],
+
+        education: [
+            {
+                institution: 'دانشگاه صنعتی اصفهان',
+                degree: 'کارشناسی ارشد هوش مصنوعی',
+                from: '1398-07', to: null,
+                location: 'اصفهان',
+                status: 'ناتمام',
+                note: null,
+            },
+            {
+                institution: 'دانشکدهٔ شهید شمسی‌پور (دانشگاه ملی مهارت)',
+                degree: 'کارشناسی مهندسی نرم‌افزار',
+                from: '1394-07', to: '1397-06',
+                location: 'تهران',
+                status: 'فارغ‌التحصیل',
+                note: null,
+            },
+        ],
+    },
+
     /* ---------- پروژه‌ها ---------- */
     /* فیلدها:
        - category    open-source | company-task | challenge

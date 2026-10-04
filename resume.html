@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="dark light">
+    <meta name="theme-color" content="#0b0d12">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+
+    <title>رزومه — محمد اکبری</title>
+    <meta name="description"
+          content="رزومهٔ محمد اکبری؛ توسعه‌دهندهٔ بک‌اند PHP و Laravel با بیش از هفت سال تجربهٔ حرفه‌ای. سابقهٔ کاری، تحصیلات، مهارت‌ها.">
+    <meta name="author" content="محمد اکبری">
+    <link rel="canonical" href="https://akbarjimi.github.io/resume.html">
+
+    <!-- Icons -->
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="favicon.ico" sizes="32x32">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="mask-icon" href="favicon.svg" color="#7c5cff">
+    <link rel="manifest" href="site.webmanifest">
+
+    <!-- Feeds -->
+    <link rel="alternate" type="application/rss+xml" title="محمد اکبری — فید RSS" href="feed.xml">
+    <link rel="alternate" type="application/atom+xml" title="محمد اکبری — فید Atom" href="atom.xml">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300..900&family=JetBrains+Mono:wght@400;600&display=swap"
+          rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Theme (before paint, avoids FOUC) -->
+    <script>
+        (function () {
+            try {
+                var t = localStorage.getItem('theme');
+                if (!t) t = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+                document.documentElement.dataset.theme = t;
+                var meta = document.querySelector('meta[name="theme-color"]');
+                if (meta) meta.setAttribute('content', t === 'dark' ? '#0b0d12' : '#f6f7fb');
+            } catch (e) {
+                document.documentElement.dataset.theme = 'dark';
+            }
+        })();
+    </script>
+
+    <!-- Scripts -->
+    <script src="js/data.js" defer></script>
+    <script src="js/main.js" defer></script>
+</head>
+<body data-page="resume">
+
+<a class="skip-link" href="#main">پرش به محتوای اصلی</a>
+
+<header class="site-header">
+    <div class="container header-inner">
+        <a class="brand" href="index.html" aria-label="خانه">
+            <span class="brand-mark" aria-hidden="true">م</span>
+            <span class="brand-text">محمد اکبری</span>
+        </a>
+
+        <nav class="nav" id="siteNav" aria-label="ناوبری اصلی">
+            <noscript>
+                <a href="index.html">خانه</a>
+                <a href="projects.html">پروژه‌ها</a>
+                <a href="courses.html">دوره‌ها</a>
+                <a href="movies.html">فیلم</a>
+                <a href="series.html">سریال</a>
+                <a href="books.html">کتاب</a>
+                <a href="papers.html">مقالات</a>
+                <a href="games.html">بازی</a>
+                <a href="blog.html">بلاگ</a>
+                <a href="notes.html">یادداشت‌ها</a>
+                <a href="contact.html">تماس</a>
+            </noscript>
+        </nav>
+
+        <div class="header-actions">
+            <button class="icon-btn" id="themeToggle" type="button" aria-label="تغییر پوسته">
+                <svg class="ico ico-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                     stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="4"/>
+                    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+                </svg>
+                <svg class="ico ico-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                     stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/>
+                </svg>
+            </button>
+            <button class="icon-btn menu-btn" id="menuBtn" type="button" aria-label="منو" aria-expanded="false"
+                    aria-controls="siteNav">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                     aria-hidden="true">
+                    <path d="M4 7h16M4 12h16M4 17h16"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+</header>
+
+<main id="main">
+
+    <section class="page-hero">
+        <div class="container">
+            <span class="eyebrow reveal">کارنامه</span>
+            <h1 class="page-title reveal">رزومه</h1>
+            <p class="lead reveal">
+                کارنامهٔ حرفه‌ای من؛ از اردیبهشت ۱۳۹۷ تا تیر ۱۴۰۴ در چهار شرکت
+                به‌عنوان توسعه‌دهندهٔ بک‌اند کار کرده‌ام. جدیدترین تجربه در بالا و
+                نخستین تجربه در پایین فهرست آمده است.
+            </p>
+
+            <div class="resume-hero-actions reveal">
+                <a class="btn btn-primary" href="resume.pdf" download>
+                    دانلود PDF
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round" aria-hidden="true" style="width:16px;height:16px">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <path d="M7 10l5 5 5-5"/>
+                        <path d="M12 15V3"/>
+                    </svg>
+                </a>
+                <a class="btn btn-ghost" href="contact.html">راه‌های تماس</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container resume-layout">
+
+            <aside class="resume-sidebar reveal" aria-label="اطلاعات پایه">
+                <div class="resume-card">
+                    <h2 class="resume-card-title">اطلاعات پایه</h2>
+                    <dl class="resume-facts" id="resumeFacts"></dl>
+                </div>
+
+                <div class="resume-card">
+                    <h2 class="resume-card-title">مهارت‌ها</h2>
+                    <div class="resume-skills" id="resumeSkills"></div>
+                </div>
+
+                <div class="resume-card">
+                    <h2 class="resume-card-title">زبان‌ها</h2>
+                    <ul class="resume-languages" id="resumeLanguages"></ul>
+                </div>
+            </aside>
+
+            <div class="resume-main">
+
+                <section class="resume-section reveal">
+                    <h2 class="resume-section-title">سابقهٔ کاری</h2>
+                    <ol class="resume-timeline" id="resumeExperience"></ol>
+                </section>
+
+                <section class="resume-section reveal">
+                    <h2 class="resume-section-title">تحصیلات</h2>
+                    <ol class="resume-timeline" id="resumeEducation"></ol>
+                </section>
+
+            </div>
+
+        </div>
+    </section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="container footer-inner">
+        <p class="footer-copy">© <span id="year">۱۴۰۴</span> محمد اکبری — ساخته‌شده با HTML، CSS و JavaScript خالص.</p>
+        <nav class="socials" aria-label="شبکه‌های اجتماعی">
+            <a href="https://github.com/akbarjimi" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://packagist.org/packages/akbarjimi/purser" target="_blank" rel="noopener">Packagist</a>
+            <a href="mailto:mohammad.akbari@zoho.com">ایمیل</a>
+        </nav>
+    </div>
+</footer>
+
+</body>
+</html>
