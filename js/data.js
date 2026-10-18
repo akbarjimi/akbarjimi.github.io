@@ -980,7 +980,7 @@ const DATA = {
             pages: 86,
             genres: ['کلاسیک', 'فلسفی', 'روسی'],
             language: 'روسی',
-            cover: '',
+            cover: '../assets/books/covers/the-death-of-ivan-ilyich.webp',
             summary: 'روایتی کوتاه و تکان‌دهنده از مرگ یک قاضی روس و پرسش‌های او دربارهٔ معنای زندگی.',
             note: null,
             finishedAt: '1405-06-16',
