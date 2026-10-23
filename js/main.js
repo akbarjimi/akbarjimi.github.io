@@ -308,14 +308,33 @@
   }
 
   function mediaPosterHTML(item, kind) {
+    /* اگر poster مستقیم موجود باشد */
     if (item.poster) {
-      return `<img src="${escape(item.poster)}" alt="پوستر ${escape(item.titleFa || item.title)}" loading="lazy" decoding="async">`;
+      return `<img src="${escape(item.poster)}"
+        alt="پوستر ${escape(item.titleFa || item.title)}"
+        loading="lazy" decoding="async"
+        width="360" height="540"
+        onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'media-placeholder',innerHTML:'<span>${escape(item.title)}</span>'}))">`;
     }
+
+    /* اگر steamAppId داشته باشد، از CDN استیم استفاده کن */
+    if (kind === 'game' && item.steamAppId) {
+      const steamUrl = `https://cdn.cloudflare.steamstatic.com/steam/apps/${item.steamAppId}/library_600x900.jpg`;
+      return `<img src="${steamUrl}"
+        alt="کاور ${escape(item.titleFa || item.title)}"
+        loading="lazy" decoding="async"
+        width="360" height="540"
+        onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'media-placeholder game-placeholder',innerHTML:'<span>${escape(item.title)}</span>'}))">`;
+    }
+
+    /* placeholder */
     const iconPath = kind === 'series'
         ? '<rect x="3" y="6" width="18" height="13" rx="2"/><path d="M8 6l3-3h2l3 3"/><path d="M8 21h8"/><circle cx="12" cy="21" r="1"/>'
-        : '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 4v16M16 4v16M3 9h5M3 15h5M16 9h5M16 15h5"/>';
+        : kind === 'game'
+            ? '<path d="M6 12h4M8 10v4"/><circle cx="15" cy="11" r="1"/><circle cx="17" cy="13" r="1"/><path d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258a4 4 0 0 0-.017-.152A4 4 0 0 0 17.32 5z"/>'
+            : '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 4v16M16 4v16M3 9h5M3 15h5M16 9h5M16 15h5"/>';
     return `
-      <div class="media-placeholder" aria-hidden="true">
+      <div class="media-placeholder${kind === 'game' ? ' game-placeholder' : ''}" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">${iconPath}</svg>
         <span>${escape(item.title)}</span>
       </div>
@@ -680,19 +699,7 @@
   };
 
   function gameCardHTML(g) {
-    const cover = g.cover
-        ? `<img src="${escape(g.cover)}" alt="کاور ${escape(g.titleFa || g.title)}" loading="lazy" decoding="async">`
-        : `
-        <div class="media-placeholder game-placeholder" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M6 12h4M8 10v4"/>
-            <circle cx="15" cy="11" r="1"/>
-            <circle cx="17" cy="13" r="1"/>
-            <path d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258a4 4 0 0 0-.017-.152A4 4 0 0 0 17.32 5z"/>
-          </svg>
-          <span>${escape(g.title)}</span>
-        </div>
-      `;
+    const cover = mediaPosterHTML(g, 'game');
 
     const ratingBadge = (g.rating != null)
         ? `<span class="media-badge media-badge-rating game-rating" title="${escape(g.ratingSource || 'Metacritic')}">
@@ -711,6 +718,11 @@
     const statusLabel = GAME_STATUS_LABEL[g.status];
     const statusBadge = statusLabel
         ? `<span class="media-status media-status-${escape(g.status)}">${escape(statusLabel)}</span>`
+        : '';
+
+    /* بج چند بار بازی‌شده */
+    const timesPlayed = (g.timesPlayed && g.timesPlayed > 1)
+        ? `<span class="media-times">${toFa(g.timesPlayed)} بار بازی‌شده</span>`
         : '';
 
     const metaParts = [];
@@ -751,6 +763,7 @@
           </h3>
           ${metaLine ? `<p class="media-meta">${metaLine}</p>` : ''}
           <p class="media-summary">${escape(g.summary)}</p>
+          ${timesPlayed}
           ${note}
           ${genres}
           ${external}
@@ -758,7 +771,6 @@
       </article>
     `;
   }
-
   /* =========================================================
      ۹. رندر صفحات
      ========================================================= */
@@ -989,16 +1001,143 @@
     );
   }
 
+    /* =========================================================
+     صفحه‌بندی «بیشتر نشان بده» برای لیست‌های بزرگ
+     ========================================================= */
+  const MEDIA_PAGE_SIZE = 24;
+
+  function renderPaginatedMedia(config) {
+    const grid = document.getElementById(config.gridId);
+    if (!grid) return;
+
+    const empty      = document.getElementById(config.emptyId);
+    const filtersBox = document.getElementById(config.filtersId);
+    const statsBox   = document.getElementById(config.statsId);
+
+    /* ساخت ظرف دکمهٔ «بیشتر» یک‌بار */
+    let moreWrap = document.getElementById(config.gridId + '-more');
+    if (!moreWrap) {
+      moreWrap = document.createElement('div');
+      moreWrap.id = config.gridId + '-more';
+      moreWrap.className = 'media-more-wrap';
+      grid.parentNode.insertBefore(moreWrap, grid.nextSibling);
+    }
+
+    const state = {
+      sortKey: config.sortKey || 'year',
+      sortDir: config.sortDir || 'desc',
+      filter: 'all',
+      shown: MEDIA_PAGE_SIZE,
+    };
+
+    /* مرتب‌سازی */
+    function sorted() {
+      return [...config.data].sort((a, b) => {
+        let av = a[state.sortKey], bv = b[state.sortKey];
+        const aMissing = av == null || av === '';
+        const bMissing = bv == null || bv === '';
+        if (aMissing && bMissing) return 0;
+        if (aMissing) return 1;
+        if (bMissing) return -1;
+        if (typeof av === 'number' && typeof bv === 'number') {
+          return state.sortDir === 'asc' ? av - bv : bv - av;
+        }
+        av = String(av); bv = String(bv);
+        const cmp = av.localeCompare(bv, 'fa');
+        return state.sortDir === 'asc' ? cmp : -cmp;
+      });
+    }
+
+    /* فیلتر */
+    function filtered() {
+      let items = sorted();
+      if (state.filter !== 'all') {
+        items = items.filter(item => (item.genres || item.tags || []).includes(state.filter));
+      }
+      return items;
+    }
+
+    /* رندر */
+    function render() {
+      const all = filtered();
+
+      if (statsBox && config.statsBuilder) {
+        statsBox.innerHTML = config.statsBuilder(all);
+      }
+
+      if (!all.length) {
+        grid.innerHTML = '';
+        moreWrap.innerHTML = '';
+        if (empty) empty.hidden = false;
+        return;
+      }
+
+      const visible = all.slice(0, state.shown);
+      grid.innerHTML = visible.map(config.cardBuilder).join('');
+      if (empty) empty.hidden = true;
+
+      /* دکمهٔ بیشتر */
+      if (all.length > state.shown) {
+        moreWrap.innerHTML = `
+          <button type="button" class="btn btn-ghost media-more-btn">
+            نمایش بیشتر (${toFa(all.length - state.shown)} مورد دیگر)
+          </button>
+        `;
+        moreWrap.querySelector('button').addEventListener('click', () => {
+          state.shown += MEDIA_PAGE_SIZE;
+          render();
+        });
+      } else {
+        moreWrap.innerHTML = '';
+      }
+
+      setupReveal();
+    }
+
+    /* چیپ‌های فیلتر */
+    if (filtersBox) {
+      const tagSet = new Set();
+      config.data.forEach(item => {
+        (item.genres || item.tags || []).forEach(t => tagSet.add(t));
+      });
+
+      const frag = document.createDocumentFragment();
+      for (const tag of tagSet) {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'filter-chip';
+        btn.dataset.filter = tag;
+        btn.textContent = tag;
+        frag.appendChild(btn);
+      }
+      filtersBox.appendChild(frag);
+
+      filtersBox.addEventListener('click', (e) => {
+        const chip = e.target.closest('.filter-chip');
+        if (!chip || !filtersBox.contains(chip)) return;
+
+        state.filter = chip.dataset.filter;
+        state.shown = MEDIA_PAGE_SIZE;
+        const chips = filtersBox.querySelectorAll('.filter-chip');
+        for (const c of chips) c.classList.toggle('is-active', c === chip);
+        render();
+      });
+    }
+
+    render();
+  }
+
   function renderMoviesPage() {
     if (!$('#moviesGrid')) return;
-    renderMediaPage({
+    renderPaginatedMedia({
       data: DATA.movies || [],
       gridId: 'moviesGrid',
       filtersId: 'moviesFilters',
       emptyId: 'moviesEmpty',
       statsId: 'moviesStats',
       cardBuilder: movieCardHTML,
-      sortFn: (a, b) => (b.year || 0) - (a.year || 0),
+      sortKey: 'year',
+      sortDir: 'desc',
       statsBuilder: (movies) => {
         const rated = movies.filter(m => m.rating != null);
         const avg = rated.length

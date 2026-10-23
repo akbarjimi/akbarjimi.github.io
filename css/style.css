@@ -4056,3 +4056,22 @@ pre {
     border: 1px solid #ccc;
   }
 }
+
+/* =========================================================
+   Media pagination + game times-played
+   ========================================================= */
+.media-more-wrap {
+  display: flex;
+  justify-content: center;
+  margin-block-start: 32px;
+  grid-column: 1 / -1;
+}
+
+.media-more-btn {
+  min-width: 220px;
+}
+
+.game-card .media-times {
+  /* همان استایل سریال‌ها، فقط متن فرق دارد */
+  margin-block-start: 2px;
+}
