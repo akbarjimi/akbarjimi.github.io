@@ -307,24 +307,15 @@
     `;
   }
 
-  function mediaPosterHTML(item, kind) {
-    /* اگر poster مستقیم موجود باشد */
-    if (item.poster) {
-      return `<img src="${escape(item.poster)}"
+function mediaPosterHTML(item, kind) {
+    const src = item.poster || item.cover;
+
+    if (src) {
+      return `<img src="${escape(src)}"
         alt="پوستر ${escape(item.titleFa || item.title)}"
         loading="lazy" decoding="async"
         width="360" height="540"
-        onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'media-placeholder',innerHTML:'<span>${escape(item.title)}</span>'}))">`;
-    }
-
-    /* اگر steamAppId داشته باشد، از CDN استیم استفاده کن */
-    if (kind === 'game' && item.steamAppId) {
-      const steamUrl = `https://cdn.cloudflare.steamstatic.com/steam/apps/${item.steamAppId}/library_600x900.jpg`;
-      return `<img src="${steamUrl}"
-        alt="کاور ${escape(item.titleFa || item.title)}"
-        loading="lazy" decoding="async"
-        width="360" height="540"
-        onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'media-placeholder game-placeholder',innerHTML:'<span>${escape(item.title)}</span>'}))">`;
+        onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'media-placeholder${kind === 'game' ? ' game-placeholder' : ''}',innerHTML:'<span>${escape(item.title)}</span>'}))">`;
     }
 
     /* placeholder */
@@ -339,7 +330,7 @@
         <span>${escape(item.title)}</span>
       </div>
     `;
-  }
+}
 
   function mediaBadgesHTML(item) {
     const rating = (item.rating != null)
@@ -727,9 +718,6 @@
 
     const metaParts = [];
     if (g.developer) metaParts.push(escape(g.developer));
-    if (g.platforms && g.platforms.length) {
-      metaParts.push(g.platforms.slice(0, 2).join('، '));
-    }
     const metaLine = metaParts.join(' · ');
 
     const genres = (g.genres && g.genres.length)
@@ -1803,7 +1791,7 @@
 
     (DATA.games || []).forEach(g => {
       push('بازی', '🎮', g.titleFa || g.title, g.developer || '',
-          'games.html#' + g.id, [...(g.genres || []), g.developer, ...(g.platforms || [])]);
+          'games.html', [...(g.genres || []), g.developer]);
     });
 
     return idx;
